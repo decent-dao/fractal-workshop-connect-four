@@ -20,7 +20,7 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
     "@fractal-framework/fractal-contracts": "^0.1.14",
     "@tanstack/query-core": "^4.22.0",
-    "b3-curious-contracts": "^0.0.14",
+    "b3-curious-contracts": "^0.1.0",
     "crypto-js": "^4.1.1",
     "ethers": "^5.7.2",
     "react": "^18.2.0",
