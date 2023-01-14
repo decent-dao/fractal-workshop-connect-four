@@ -1,15 +1,14 @@
-import { Context, createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react"
-import { WagmiConfig, useProvider } from "wagmi"
-import { goerliConfig } from "./networks"
+import { Context, ReactNode, createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { WagmiConfig, configureChains, createClient, createStorage, goerli, useProvider } from 'wagmi'
+import { goerliConfig } from './networks'
 
-import { configureChains, createClient, createStorage, goerli } from "wagmi"
-import { alchemyProvider } from "wagmi/providers/alchemy"
-import { infuraProvider } from "wagmi/providers/infura"
-import { publicProvider } from "wagmi/providers/public"
-import { BaseContracts, NetworkConfig } from "./types"
-import { defaultNetworkState } from "./constants"
-import { FractalRegistry__factory, GnosisSafe__factory } from "@fractal-framework/fractal-contracts"
-import { ConnectFour__factory, ConnectFourFactory__factory } from "b3-curious-contracts/typechain"
+import { FractalRegistry__factory as fractalRegistryInterface, GnosisSafe__factory as gnosisSafeInterface } from '@fractal-framework/fractal-contracts'
+import { ConnectFour__factory as connectFourInterface, ConnectFourFactory__factory as connectFourFactoryInterface } from 'b3-curious-contracts/typechain'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { infuraProvider } from 'wagmi/providers/infura'
+import { publicProvider } from 'wagmi/providers/public'
+import { defaultNetworkState } from './constants'
+import { BaseContracts, NetworkConfig } from './types'
 
 export const chainsArr = [goerli]
 
@@ -26,8 +25,7 @@ export const wagmiClient = createClient({
 
 export const NetworkConfigContext = createContext({} as NetworkConfig)
 
-export const useWeb3NetworkConfig = (): NetworkConfig =>
-  useContext(NetworkConfigContext as Context<NetworkConfig>)
+export const useWeb3NetworkConfig = (): NetworkConfig => useContext(NetworkConfigContext as Context<NetworkConfig>)
 
 const getNetworkConfig = (chainId: number) => {
   switch (chainId) {
@@ -43,30 +41,32 @@ const getNetworkConfig = (chainId: number) => {
 export function Web3Provider({ children }: { children: ReactNode }) {
   const provider = useProvider()
   const [config, setConfig] = useState<NetworkConfig>(getNetworkConfig(5))
-  const [baseContracts, setBaseContracts] = useState<BaseContracts>();
-
+  const [baseContracts, setBaseContracts] = useState<BaseContracts>()
 
   useEffect(() => {
-    const connectFourBase = ConnectFour__factory.connect(config.contractAddresses.connectFourAddress, provider);
-    const connectFourFactoryBase = ConnectFourFactory__factory.connect(config.contractAddresses.connectFourAddress, provider);
-    const fractalRegistryBase = FractalRegistry__factory.connect(config.contractAddresses.connectFourAddress, provider);
-    const gnosisSafeBase = GnosisSafe__factory.connect(config.contractAddresses.connectFourAddress, provider);
+    const connectFourBase = connectFourInterface.connect(config.contractAddresses.connectFourAddress, provider)
+    const connectFourFactoryBase = connectFourFactoryInterface.connect(config.contractAddresses.connectFourAddress, provider)
+    const fractalRegistryBase = fractalRegistryInterface.connect(config.contractAddresses.connectFourAddress, provider)
+    const gnosisSafeBase = gnosisSafeInterface.connect(config.contractAddresses.connectFourAddress, provider)
     setBaseContracts({
       connectFourBase,
       connectFourFactoryBase,
       fractalRegistryBase,
-      gnosisSafeBase
+      gnosisSafeBase,
     })
-  }, [])
+  }, [config, provider])
 
   useEffect(() => {
     setConfig(getNetworkConfig(provider.network.chainId))
   }, [provider])
 
-  const value = useMemo(() => ({
-    baseContracts,
-    ...config
-  }), [baseContracts, config])
+  const value = useMemo(
+    () => ({
+      baseContracts,
+      ...config,
+    }),
+    [baseContracts, config],
+  )
 
   return (
     <NetworkConfigContext.Provider value={value}>
