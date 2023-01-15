@@ -13,8 +13,8 @@ import { BaseContracts, NetworkConfig } from './types'
 export const chainsArr = [goerli]
 
 export const { chains, provider } = configureChains(chainsArr, [
-  infuraProvider({ priority: 0, apiKey: import.meta.env.VITE_ALCHEMY_ID }),
-  alchemyProvider({ priority: 1, apiKey: import.meta.env.VITE_INFURA_ID }),
+  infuraProvider({ priority: 0, apiKey: import.meta.env.VITE_INFURA_ID }),
+  alchemyProvider({ priority: 1, apiKey: import.meta.env.VITE_ALCHEMY_ID }),
   publicProvider({ priority: 2 }),
 ])
 
