@@ -5,4 +5,4 @@ export enum GameAction {
   RESET
 }
 
-export type GameActions = { type: GameAction.RESET }
+export type GameActions = { type: GameAction.RESET } | { type: GameAction.UPDATE_TURN, payload: { teamAddress: string, }}

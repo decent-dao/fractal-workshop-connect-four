@@ -1,4 +1,4 @@
-import { SeasonAction, SeasonActions } from './../../season/actions';
+import { SeasonAction, SeasonActions } from '../actions';
 import { useWeb3NetworkConfig } from '../../../web3/Web3Provider';
 import { Season } from '../../types';
 import { Dispatch, useEffect, useCallback } from 'react';
@@ -18,7 +18,7 @@ export function useConnectFourSeason({ currentSeason, seasonDispatch }: IUseConn
 
     const connectFourContract = baseContracts.connectFourBase.attach(currentSeason.currentSeasonAddress)
     const currentGameId = await connectFourContract.gameId()
-    const gameIds = new Array(currentGameId).map((_, i) => i + 1);
+    const gameIds = new Array(currentGameId.toNumber()).fill(undefined).map((_, i) => i + 1);
     return {
       connectFourContract,
       gameIds

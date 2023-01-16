@@ -13,6 +13,7 @@ export interface Season {
 }
 
 export interface Game {
+  gameId: number | null;
   teamOne: AddressInfo | null;
   teamTwo: AddressInfo | null;
   turn: number;

@@ -3,6 +3,7 @@ import { Game, Season, Store } from './types';
 
 
 export const gameInitialState: Game = {
+  gameId: null,
   teamOne: null,
   teamTwo: null,
   turn: 0,
@@ -15,7 +16,7 @@ export const gameInitialState: Game = {
 }
 
 export const seasonInitialState: Season = {
-  currentSeasonAddress: '0xc6CC49E491A2c7a18df0515f0E0a7E9720EB74a1',
+  currentSeasonAddress: import.meta.env.VITE_CURRENT_SEASON_ADDRESS,
   connectFourContract: null,
   gameIds: []
 }
