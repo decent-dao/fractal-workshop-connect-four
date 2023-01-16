@@ -1,10 +1,10 @@
-import { Context, ReactNode, createContext, useContext, useEffect, useMemo, useReducer } from 'react';
+import { Context, ReactNode, createContext, useContext, useMemo, useReducer } from 'react';
 import { Store } from './types';
 import { gameReducer } from './game/reducer';
 import { gameInitialState, seasonInitialState } from './constants';
 import { seasonReducer } from './season/reducer';
-import { useConnectFourSeason } from './season/hooks/useConnectFourSeason';
-import { useConnectFourListeners } from './game/hooks/useConnectFourListeners';
+import { useConnectFourSeason } from './hooks/useConnectFourSeason';
+import { useConnectFourListeners } from './hooks/useConnectFourListeners';
 
 const StoreContext = createContext<Store>({} as Store);
 export const useStore = (): Store => useContext(StoreContext as Context<Store>)

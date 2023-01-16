@@ -1,5 +1,5 @@
-import { Season } from './../../types';
-import { GameAction, GameActions } from '../actions';
+import { Season } from '../types';
+import { GameAction, GameActions } from '../game/actions';
 import { Dispatch, useCallback } from 'react';
 
 interface IUseConnectFourGame {
