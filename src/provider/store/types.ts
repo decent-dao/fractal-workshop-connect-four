@@ -2,7 +2,6 @@ import { AddressInfo } from './../../hooks/utils/useAddressLookup';
 import { ConnectFour } from 'b3-curious-contracts/typechain';
 
 export interface Store {
-  currentGame: Game;
   currentSeason: Season;
 }
 
@@ -10,14 +9,16 @@ export interface Season {
   currentSeasonAddress: string;
   connectFourContract: ConnectFour | null;
   gameIds: number[];
+  currentGame: Game | null;
 }
 
 export interface Game {
-  gameId: number | null;
-  teamOne: AddressInfo | null;
-  teamTwo: AddressInfo | null;
+  gameId: number;
+  teamOne: AddressInfo;
+  teamTwo: AddressInfo;
   turn: number;
   winner: string;
+  board: number[][];
   states: GameStates
 }
 

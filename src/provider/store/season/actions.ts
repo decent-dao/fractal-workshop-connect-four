@@ -1,14 +1,20 @@
 import { BigNumber } from 'ethers';
-import { Season } from './../types'
+import { Game, Season } from './../types'
 export enum SeasonAction {
+  // actions for setting season state
   SET_SEASON,
-  UPDATE_TURN,
   UPDATE_GAME_IDS,
-  RESET,
+  // actions for setting game state
+  UPDATE_TURN, // isMoveLoading -> true
+  UPDATE_WINNER,
+  SET_GAME, // isGameLoading -> false
+  GAME_RESET, // used to reset Game
 }
 
 export type SeasonActions =
-  | { type: SeasonAction.RESET }
-  | { type: SeasonAction.SET_SEASON; payload: Omit<Season, 'currentSeasonAddress'> }
+  | { type: SeasonAction.GAME_RESET }
+  | { type: SeasonAction.SET_SEASON; payload: Omit<Season, 'currentSeasonAddress' | 'currentGame'> }
   | { type: SeasonAction.UPDATE_GAME_IDS; payload: BigNumber }
-  | { type: SeasonAction.UPDATE_TURN; payload: number }
+  | { type: SeasonAction.UPDATE_TURN; payload: { gameId: number, teamAddress: string, turnNumber: number} }
+  | { type: SeasonAction.UPDATE_WINNER; payload: {winningAddress: string} }
+  | { type: SeasonAction.SET_GAME; payload: Omit<Game, 'states'> }
