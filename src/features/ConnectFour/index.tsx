@@ -52,9 +52,9 @@ export function ConnectFour() {
             <Flex
               key={i}
               borderX={i !== 0 ? BOARD_PADDING : undefined}
-              borderTop={i === 1 ? BOARD_PADDING : undefined}
-              borderBottom={i === 6 ? BOARD_PADDING : undefined}
-              borderColor='blue.900'
+              // borderTop={i === 1 ? BOARD_PADDING : undefined}
+              // borderBottom={i === 6 ? BOARD_PADDING : undefined}
+              borderColor='blue.400'
               roundedTop={i === 1 ? 'xl' : undefined}
               roundedBottom={i === 6 ? 'xl' : undefined}
             >

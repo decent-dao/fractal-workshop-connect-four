@@ -14,7 +14,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
         boxSize="7rem"
         zIndex={0}
         border={square.color ? '24px solid': undefined}
-        borderColor="#369af8ad"
+        borderColor="#ffe19dff"
         sx={{
           '&': {
             WebkitMarginStart: '0px !important',
@@ -30,7 +30,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
             zIndex: 8,
             borderRadius: '100%',
             transform: 'translate(-50%, -50%)',
-            boxShadow: !isOutOfBounds ? '0px 0px 0px 18px #369af8ad, 0px 0px 0px 24px #369af8ff' : undefined
+            boxShadow: !isOutOfBounds ? '0px 0px 0px 18px #ffda85ff, 0px 0px 0px 24px #ffe19dff' : undefined
           },
         }}>
         {children}
