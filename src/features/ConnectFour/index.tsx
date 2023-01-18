@@ -1,4 +1,4 @@
-import { Button, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { ConnectSquare } from './types'
 import { colArr, rowArr } from './constants'
 import { useMemo, useRef } from 'react'
@@ -6,6 +6,8 @@ import { GameContainer } from './components/GameContainer'
 import { SquareFrame } from './components/SquareFrame'
 import { SquareCenter } from './components/SquareCenter'
 import { ChipFalling } from './components/ChipFalling'
+
+const BOARD_PADDING = '32px solid'
 
 export function ConnectFour() {
   const chessBoardData: ConnectSquare[][] = colArr
@@ -43,18 +45,22 @@ export function ConnectFour() {
   const fallingChipRef = useRef<HTMLDivElement>(null)
 
   return (
-    <Flex justifyContent="center" h='full'>
+    <Flex justifyContent='center' h='full'>
       <GameContainer>
         {updatedConnectboard.map((row, i) => {
           return (
-            <Flex key={i} rounded="lg">
+            <Flex
+              key={i}
+              borderX={i !== 0 ? BOARD_PADDING : undefined}
+              borderTop={i === 1 ? BOARD_PADDING : undefined}
+              borderBottom={i === 6 ? BOARD_PADDING : undefined}
+              borderColor='blue.900'
+              roundedTop={i === 1 ? 'xl' : undefined}
+              roundedBottom={i === 6 ? 'xl' : undefined}
+            >
               {row.map((square) => {
-
                 return (
-                  <SquareFrame
-                    key={square.location}
-                    square={square}
-                  >
+                  <SquareFrame key={square.location} square={square}>
                     <ChipFalling square={square} ref={fallingChipRef} />
                     <SquareCenter square={square} fallingChipRef={fallingChipRef} />
                   </SquareFrame>
@@ -64,7 +70,6 @@ export function ConnectFour() {
           )
         })}
       </GameContainer>
-      <Button>Pick Col 1</Button>
     </Flex>
   )
 }
