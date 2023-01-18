@@ -7,7 +7,6 @@ import { GameBase } from '../provider/store/types'
 
 export function ConnectFourGames() {
   const { currentSeason: { gameIds}} = useStore()
-  console.log('GAMEID', gameIds)
   return (
     <TableContainer>
 

@@ -22,7 +22,6 @@ export function SquareCenter({ square, fallingChipRef }: { square: ConnectSquare
           const lrb = locationRect.top + 96
           if (square.isPiecePlaced) {
             if (fallingRectbottom >= lrt && fallingRectbottom <= lrb) {
-              console.log('BOOOM')
               // @todo when it collides with piece below; end animation; add piece in spot
               clearInterval(intervalId)
             }

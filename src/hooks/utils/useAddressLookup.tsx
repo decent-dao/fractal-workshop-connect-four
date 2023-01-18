@@ -71,7 +71,6 @@ export const useAddressLookup = (address?: string) => {
 
       const registryDAOName = registryDAONameEvent[0] ? registryDAONameEvent[0].args[1] : null
       const isSafe = !!contractGetCall
-      console.log('REGIST',registryDAONameEvent, isSafe )
       const truncated = addressSubString(_address)
       const displayName = ensName || registryDAOName || truncated
 
