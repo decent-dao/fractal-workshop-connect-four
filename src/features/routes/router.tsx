@@ -1,16 +1,16 @@
 import { createHashRouter } from 'react-router-dom';
 import { ConnectFourGames } from '../../components/ConnectFourGames';
 import { ConnectFour } from '../ConnectFour';
+import { ROUTES } from './routes';
 
 export const router = createHashRouter([
   {
-    path: '/', // splash
+    path: ROUTES.base.path, // splash
     element: <ConnectFourGames />,
-    children: [
-      {
-        element: <ConnectFour />,
-        path: ':address',
-        // loader: gameLoader,
-      }],
   },
+  {
+    element: <ConnectFour />,
+    path: ROUTES.game.path,
+    // loader: gameLoader,
+  }
 ])

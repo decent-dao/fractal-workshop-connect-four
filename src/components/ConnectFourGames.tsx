@@ -1,12 +1,14 @@
 import { Button, Flex, SkeletonText, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import { constants } from 'ethers'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../features/routes/routes'
 import { useConnectFourGame } from '../provider/store/hooks/useConnectFourGame'
 import { useStore } from '../provider/store/StoreProvider'
 import { GameBase } from '../provider/store/types'
 
 export function ConnectFourGames() {
-  const { currentSeason: { gameIds}} = useStore()
+  const { currentSeason: { gameIds } } = useStore()
   return (
     <TableContainer>
 
@@ -31,9 +33,9 @@ export function ConnectFourGames() {
 
 export function TableBodyRow({ gameId }: { gameId: number }) {
   const [game, setGame] = useState<GameBase>()
-  const {currentSeason} = useStore()
-  const {getGameData} = useConnectFourGame({currentSeason})
-
+  const { currentSeason } = useStore()
+  const { getGameData } = useConnectFourGame({ currentSeason })
+  const navigate = useNavigate()
   useEffect(() => {
     const retrieveGameData = async () => {
       const game = await getGameData(gameId)
@@ -42,7 +44,7 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
     retrieveGameData()
   }, [getGameData, gameId])
 
-  if(!game) {
+  if (!game) {
     return null
   }
 
@@ -67,7 +69,7 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
       <Td isNumeric>{game.turn}</Td>
       <Td>
         <Flex justifyContent="flex-end">
-          <Button variant='secondary'>View Game</Button>
+          <Button variant='secondary' onClick={() => navigate(ROUTES.game.relative(game.gameId))}>View Game</Button>
         </Flex>
       </Td>
     </Tr>
