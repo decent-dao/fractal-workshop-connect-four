@@ -9,6 +9,7 @@ export type AddressInfo = {
   ensName: string | null
   registryDAOName: string | null
   isSafe: boolean
+  displayName: string | null
 }
 
 export const intialAddressState = {
@@ -17,6 +18,7 @@ export const intialAddressState = {
   ensName: null,
   registryDAOName: null,
   isSafe: false,
+  displayName: null,
 }
 
 enum AddressLookupAction {
@@ -47,47 +49,53 @@ export const useAddressLookup = (address?: string) => {
   const { baseContracts } = useWeb3NetworkConfig()
 
   const displayName = useMemo(() => {
-    const { truncated, ensName, registryDAOName } = addressInfo;
+    const { truncated, ensName, registryDAOName } = addressInfo
     return ensName || registryDAOName || truncated || ''
   }, [addressInfo])
 
-  const lookupAddress = useCallback(async (_address?: string) => {
-    if (!_address || !isAddress(_address) || !baseContracts) {
-      addrDispatch({ type: AddressLookupAction.RESET })
-      return intialAddressState;
-    }
-    const registryContract = baseContracts.fractalRegistryBase
-    const [ensName, registryDAONameEvent, contractGetCall] = await Promise.all([
-      provider.lookupAddress(_address).catch(() => null),
-      registryContract.queryFilter(
-        registryContract.filters.FractalNameUpdated(_address),
-      ),
-      baseContracts.gnosisSafeBase
-        .attach(_address)
-        .getChainId()
-        .catch(() => null) // fails if not a Safe
-    ]
-    )
+  const lookupAddress = useCallback(
+    async (_address?: string) => {
+      if (!_address || !isAddress(_address) || !baseContracts) {
+        addrDispatch({ type: AddressLookupAction.RESET })
+        return intialAddressState
+      }
+      const registryContract = baseContracts.fractalRegistryBase
+      const [ensName, registryDAONameEvent, contractGetCall] = await Promise.all([
+        provider.lookupAddress(_address).catch(() => null),
+        registryContract.queryFilter(registryContract.filters.FractalNameUpdated(_address)),
+        baseContracts.gnosisSafeBase
+          .attach(_address)
+          .getChainId()
+          .catch(() => null), // fails if not a Safe
+      ])
 
-    const registryDAOName = registryDAONameEvent[0] ? registryDAONameEvent[0].args[1] : null
-    const isSafe = !!contractGetCall
-    const truncated = addressSubString(_address)
+      const registryDAOName = registryDAONameEvent[0] ? registryDAONameEvent[0].args[1] : null
+      const isSafe = !!contractGetCall
+      console.log('REGIST',registryDAONameEvent, isSafe )
+      const truncated = addressSubString(_address)
+      const displayName = ensName || registryDAOName || truncated
 
-    return {
-      full: _address,
-      ensName,
-      registryDAOName,
-      truncated,
-      isSafe,
-    }
-  }, [provider, baseContracts])
+      return {
+        full: _address,
+        ensName,
+        registryDAOName,
+        truncated,
+        isSafe,
+        displayName,
+      }
+    },
+    [provider, baseContracts],
+  )
 
-  const storeAddressInfo = useCallback(async (_address?: string) => {
-    addrDispatch({
-      type: AddressLookupAction.SET_ADDRESS,
-      payload: await lookupAddress(_address),
-    })
-  }, [lookupAddress])
+  const storeAddressInfo = useCallback(
+    async (_address?: string) => {
+      addrDispatch({
+        type: AddressLookupAction.SET_ADDRESS,
+        payload: await lookupAddress(_address),
+      })
+    },
+    [lookupAddress],
+  )
 
   useEffect(() => {
     if (address) {

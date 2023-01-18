@@ -45,9 +45,9 @@ export function Web3Provider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const connectFourBase = connectFourInterface.connect(config.contractAddresses.connectFourAddress, provider)
-    const connectFourFactoryBase = connectFourFactoryInterface.connect(config.contractAddresses.connectFourAddress, provider)
-    const fractalRegistryBase = fractalRegistryInterface.connect(config.contractAddresses.connectFourAddress, provider)
-    const gnosisSafeBase = gnosisSafeInterface.connect(config.contractAddresses.connectFourAddress, provider)
+    const connectFourFactoryBase = connectFourFactoryInterface.connect(config.contractAddresses.connectFourFactoryAddress, provider)
+    const fractalRegistryBase = fractalRegistryInterface.connect(config.contractAddresses.fractalRegistryAddress, provider)
+    const gnosisSafeBase = gnosisSafeInterface.connect(config.contractAddresses.gnosisSafeAddress, provider)
     setBaseContracts({
       connectFourBase,
       connectFourFactoryBase,

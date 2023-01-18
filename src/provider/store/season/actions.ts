@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers';
-import { Game, Season } from './../types'
+import { GameBaseData, Season } from './../types'
 export enum SeasonAction {
   // actions for setting season state
   SET_SEASON,
@@ -19,4 +19,4 @@ export type SeasonActions =
   | { type: SeasonAction.UPDATE_TURN; payload: { gameId: number, teamAddress: string, turnNumber: number } }
   | { type: SeasonAction.UPDATE_MOVE_FINISHED, payload: { board: number[][] } }
   | { type: SeasonAction.UPDATE_WINNER; payload: { gameId: number, winningAddress: string } }
-  | { type: SeasonAction.SET_GAME; payload: Omit<Game, 'states'> }
+  | { type: SeasonAction.SET_GAME; payload: GameBaseData }

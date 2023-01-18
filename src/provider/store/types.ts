@@ -22,6 +22,9 @@ export interface Game {
   states: GameStates
 }
 
+export type GameBaseData = Omit<Game, 'states'>
+export type GameBase = Omit<Game, 'states' | 'board'>
+
 export type GameStates = {
   isGameLoading: boolean,
   isMoveLoading: boolean,
