@@ -1,50 +1,84 @@
+import { ConnectSquare } from './../../../features/ConnectFour/types';
+import { useStore } from './../StoreProvider';
 import { GameBase } from './../types';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useAddressLookup } from './../../../hooks/utils/useAddressLookup';
-import { Season } from '../types';
+import { SeasonAction } from '../season/actions';
 
 interface IUseConnectFourGame {
-  currentSeason: Season
+  gameId?: string;
 }
 
-export function useConnectFourGame({ currentSeason }: IUseConnectFourGame) {
+export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
+  const { currentSeason, dispatch } = useStore()
   const { lookupAddress } = useAddressLookup()
-  const getGameData = useCallback(async (gameId: number): Promise<GameBase | undefined> => {
+
+  const getGameData = useCallback(async (_gameId: number): Promise<GameBase | undefined> => {
+    if (!currentSeason.connectFourContract) {
+      return;
+    }
+    try {
+      const { teamOne, teamTwo, ...rest } = await currentSeason.connectFourContract.getGame(_gameId);
+      return {
+        ...rest,
+        gameId: _gameId,
+        teamOne: await lookupAddress(teamOne),
+        teamTwo: await lookupAddress(teamTwo),
+      };
+    } catch (e) {
+      console.error('🚀 There was a problem retreiving game', e)
+    }
+  }, [currentSeason, lookupAddress])
+
+  const getBoardData = useCallback(async (_gameId: number) => {
     if (!currentSeason.connectFourContract) {
       return;
     }
     try {
 
-      const {teamOne, teamTwo, ...rest} = await currentSeason.connectFourContract.getGame(gameId);
-      return {
-        ...rest, 
-        gameId,
-        teamOne: await lookupAddress(teamOne),
-        teamTwo: await  lookupAddress(teamTwo),
-      };
+      const board = await currentSeason.connectFourContract.getGameBoard(_gameId);
+
+      const connectBoard: ConnectSquare[][] = [...board, new Array(6).fill('x')].map((col, column) => col.map((square, row) => {
+        if (square === 1 || square === 2) {
+          return {
+            location: `${column}:${row}`,
+            team: square
+          }
+        }
+        if (square === 'x') {
+          return {
+            location: `${square}:${row}`
+          }
+        }
+        return {
+          location: `${column}:${row}`
+        }
+      }))
+      return connectBoard.reverse()
     } catch {
       console.error('🚀 There was a problem retreiving game')
     }
-  }, [currentSeason, lookupAddress])
+  }, [currentSeason])
 
-    const getGameAndBoardData = useCallback(async (gameId: number) => {
-      if (!currentSeason.connectFourContract) {
-        return;
+  useEffect(() => {
+    if (!currentSeason.currentGame && gameId) {
+      const retrieveData = async () => {
+        // get game data
+        const game = await getGameData(Number(gameId))
+        // get board data
+        const board = await getBoardData(Number(gameId))
+        // dispatch game to state
+        if (!!game && !!board) {
+
+          dispatch({
+            type: SeasonAction.SET_GAME,
+            payload: { ...game, board }
+          })
+        }
       }
-      try {
-  
-        const gameData = getGameData(gameId);
-        const board = await currentSeason.connectFourContract.getGameBoard(gameId);
-        return {
-            
-          ...gameData, 
-          board
-        };
-      } catch {
-        console.error('🚀 There was a problem retreiving game')
-      }
-    }, [currentSeason, getGameData])
+      retrieveData()
+    }
+  }, [gameId, currentSeason.currentGame, getGameData, getBoardData, dispatch])
 
-
-  return { getGameData, getGameAndBoardData };
+  return { getGameData, getBoardData };
 }

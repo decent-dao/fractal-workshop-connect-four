@@ -7,8 +7,7 @@ export type Team = {
 
 export type ConnectSquare = {
     location: string,
-    color: string,
     // @note undefined = no piece
-    // @note Piece = space occupied
-    isPiecePlaced?: boolean
+    // @note colors = space occupied
+    team?: 1 | 2
 }

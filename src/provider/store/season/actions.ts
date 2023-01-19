@@ -1,3 +1,4 @@
+import { ConnectSquare } from './../../../features/ConnectFour/types';
 import { BigNumber } from 'ethers';
 import { GameBaseData, Season } from './../types'
 export enum SeasonAction {
@@ -17,6 +18,6 @@ export type SeasonActions =
   | { type: SeasonAction.SET_SEASON; payload: Omit<Season, 'currentSeasonAddress' | 'currentGame'> }
   | { type: SeasonAction.UPDATE_GAME_IDS; payload: BigNumber }
   | { type: SeasonAction.UPDATE_TURN; payload: { gameId: number, teamAddress: string, turnNumber: number } }
-  | { type: SeasonAction.UPDATE_MOVE_FINISHED, payload: { board: number[][] } }
+  | { type: SeasonAction.UPDATE_MOVE_FINISHED, payload: { board: ConnectSquare[][] } }
   | { type: SeasonAction.UPDATE_WINNER; payload: { gameId: number, winningAddress: string } }
   | { type: SeasonAction.SET_GAME; payload: GameBaseData }

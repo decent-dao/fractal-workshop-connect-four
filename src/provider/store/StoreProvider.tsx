@@ -13,8 +13,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   useConnectFourSeason({ currentSeason, seasonDispatch })
   useConnectFourListeners({ currentSeason, seasonDispatch })
+
   const value = useMemo(() => ({
-    currentSeason
+    currentSeason,
+    dispatch: seasonDispatch
   }), [currentSeason])
   return <StoreContext.Provider value={value as Store}>{children}</StoreContext.Provider>;
 } 

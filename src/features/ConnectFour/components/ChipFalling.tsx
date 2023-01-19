@@ -1,4 +1,5 @@
 import { Box, keyframes, forwardRef } from '@chakra-ui/react';
+import { CHIP_COLORS } from '../constants';
 import { ConnectSquare } from '../types'
 
 const animateDownTraveling = keyframes`
@@ -11,19 +12,20 @@ interface IChipFalling {
   square: ConnectSquare;
 }
 
-export const ChipFalling = forwardRef<IChipFalling, 'div'>(({square}, ref) => {
+export const ChipFalling = forwardRef<IChipFalling, 'div'>(({ square }, ref) => {
   const isOutOfBounds = square.location.includes('x')
 
-  if (square.isPiecePlaced && isOutOfBounds) {
+  if (square.team && isOutOfBounds) {
     return (
       <Box
         ref={ref}
         w='full'
         h='full'
         rounded='full'
-        bg='green.500'
         animation={isOutOfBounds ? animationDownTraveling : undefined}
-        boxSize="6rem"
+        sx={{ ...CHIP_COLORS[square.team + 1] }}
+        boxSize="5rem"
+        left="2.5rem"
         position='absolute'
         opacity='0'
         transform='translateY(-150%)'

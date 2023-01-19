@@ -33,8 +33,7 @@ export function ConnectFourGames() {
 
 export function TableBodyRow({ gameId }: { gameId: number }) {
   const [game, setGame] = useState<GameBase>()
-  const { currentSeason } = useStore()
-  const { getGameData } = useConnectFourGame({ currentSeason })
+  const { getGameData } = useConnectFourGame({})
   const navigate = useNavigate()
   useEffect(() => {
     const retrieveGameData = async () => {

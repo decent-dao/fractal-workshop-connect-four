@@ -8,6 +8,6 @@ export const seasonInitialState: Season = {
   currentGame: null,
 }
 
-export const storeInitialState: Store = {
+export const storeInitialState: Omit<Store, 'dispatch'> = {
   currentSeason: seasonInitialState
 }

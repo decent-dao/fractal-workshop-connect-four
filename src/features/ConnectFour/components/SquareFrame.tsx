@@ -13,7 +13,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
       <Center
         boxSize="7rem"
         zIndex={0}
-        border={square.color ? '24px solid': undefined}
+        border={!isOutOfBounds ? '24px solid': undefined}
         borderColor="#ffe19dff"
         sx={{
           '&': {

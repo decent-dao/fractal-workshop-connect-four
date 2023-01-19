@@ -1,8 +1,12 @@
+import { Dispatch } from 'react';
+import { ConnectSquare } from './../../features/ConnectFour/types';
 import { AddressInfo } from './../../hooks/utils/useAddressLookup';
 import { ConnectFour } from 'b3-curious-contracts/typechain';
+import { SeasonActions } from './season/actions';
 
 export interface Store {
   currentSeason: Season;
+  dispatch: Dispatch<SeasonActions>;
 }
 
 export interface Season {
@@ -18,7 +22,7 @@ export interface Game {
   teamTwo: AddressInfo;
   turn: number;
   winner: string;
-  board: number[][];
+  board: ConnectSquare[][];
   states: GameStates
 }
 

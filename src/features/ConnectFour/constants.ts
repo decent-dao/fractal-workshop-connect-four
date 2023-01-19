@@ -1,2 +1,12 @@
-export const colArr = ['1', '2', '3', '4', '5', '6', 'x']
-export const rowArr = ['a', 'b', 'c', 'd', 'e', 'f']
+export const CHIP_COLORS = [
+  // team one
+  {
+    shadow: '0px 0px 8px 8px inset #FFFFFFad, 0px 0px 8px 8px inset #000000ad',
+    bg: '#FFF'
+  },
+  // team two
+  {
+    shadow: '0px 0px 8px 8px inset #ec221ead, 0px 0px 8px 8px inset #FFFFFFad',
+    bg: '#ec221eff'
+  }
+]

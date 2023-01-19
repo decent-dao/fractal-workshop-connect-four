@@ -11,6 +11,5 @@ export const router = createHashRouter([
   {
     element: <ConnectFour />,
     path: ROUTES.game.path,
-    // loader: gameLoader,
   }
 ])
