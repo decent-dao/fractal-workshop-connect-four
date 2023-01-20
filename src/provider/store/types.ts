@@ -23,24 +23,7 @@ export interface Game {
   turn: number
   winner: string
   board: ConnectSquare[][]
-  states: GameStates
-  temp?: GameTempData
 }
 
 export type GameBaseData = Omit<Game, 'states'>
 export type GameBase = Omit<Game, 'states' | 'board'>
-
-export type GameStates = {
-  isGameLoading: boolean
-  isMoveLoading: boolean
-  isGameOver: boolean
-}
-
-export type GameTempData = {
-  actionTurnTaken?: TempTurnTaken
-}
-
-export type TempTurnTaken = {
-  turnColumn: number
-  turnTeamNumber: number
-}

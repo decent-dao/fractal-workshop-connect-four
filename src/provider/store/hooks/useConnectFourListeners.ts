@@ -4,7 +4,7 @@ import { TypedListener } from 'b3-curious-contracts/typechain/common';
 import { BigNumber } from 'ethers';
 import { SeasonActions, SeasonAction } from '../season/actions';
 import { Season } from '../types';
-import { TurnTakenEvent } from 'b3-curious-contracts/typechain/ConnectFour';
+import { GameFinishedEvent, TurnTakenEvent } from 'b3-curious-contracts/typechain/ConnectFour';
 
 interface IUseListeners {
   currentSeason: Season
@@ -52,17 +52,24 @@ export function useConnectFourListeners({ currentSeason, seasonDispatch }: IUseL
 
     }
   }, [currentSeason.connectFourContract, seasonDispatch])
-  // // @todo game finished listener
-  // useEffect(() => {
-  //   const connectFourContract = currentSeason.connectFourContract
-  //   if (!connectFourContract) {
-  //     return;
-  //   }
-  //   connectFourContract.on(connectFourContract.filters.GameFinished(), () => { })
-  //   return () => {
-  //     connectFourContract.off(connectFourContract.filters.GameFinished(), () => { })
 
-  //   }
-  // }, [currentSeason])
+  // @todo game finished listener
+  useEffect(() => {
+    const connectFourContract = currentSeason.connectFourContract
+    if (!connectFourContract) {
+      return;
+    }
+    const turnTakenListener: TypedListener<GameFinishedEvent> = (gameId, winningAddress) => {
+      seasonDispatch({
+        type: SeasonAction.UPDATE_WINNER,
+        payload: { gameId: gameId.toNumber(), winningAddress }
+      })
+    }
+    connectFourContract.on(connectFourContract.filters.GameFinished(), turnTakenListener)
+    return () => {
+      connectFourContract.off(connectFourContract.filters.GameFinished(), turnTakenListener)
+
+    }
+  }, [currentSeason, seasonDispatch])
   return;
 }

@@ -1,7 +1,6 @@
 import { seasonInitialState } from './../constants';
 import { SeasonAction, SeasonActions } from './actions';
-import { Season, GameStates, GameTempData } from './../types';
-import { constants } from 'ethers';
+import { Season } from './../types';
 
 export const seasonReducer = (state: Season, action: SeasonActions) => {
   switch (action.type) {
@@ -14,13 +13,7 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
       return { ...state, gameIds }
     }
     case SeasonAction.SET_GAME: {
-      const { winner } = action.payload;
-      const states: GameStates = {
-        isGameLoading: false,
-        isGameOver: winner !== constants.AddressZero,
-        isMoveLoading: false,
-      }
-      return { ...state, currentGame: { ...action.payload, states } };
+      return { ...state, currentGame: { ...action.payload } };
     }
     case SeasonAction.UPDATE_TURN: {
       const { gameId, column, teamAddress } = action.payload
@@ -32,21 +25,6 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
       // otherwise update current game
       const teamNumber = teamAddress === teamOne.full ? 1 : 2
 
-      // this boolean allows for the 'animation' of the chip falling into place to start
-      const states: GameStates = {
-        ...state.currentGame.states,
-        isMoveLoading: true, // this is one being updated
-      }
-
-      // this will set temporary data about the move made by team
-      // this will be deleted when move is finished
-      const temp: GameTempData = {
-            actionTurnTaken: {
-              turnColumn: column,
-              turnTeamNumber: teamNumber
-            }
-      }
-
       // temporary update board with chip on outofbounds row
       const tempBoard = [...board]
       tempBoard[0][column] = {
@@ -54,23 +32,20 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
         team: teamNumber
       };
 
-      return { ...state, currentGame: { ...state.currentGame, board: tempBoard, states, temp } };
+      return { ...state, currentGame: { ...state.currentGame, board: tempBoard } };
     }
     case SeasonAction.UPDATE_MOVE_FINISHED: {
       if (!state.currentGame) {
         // for typescript, logic should never hit here
         return state;
       }
-      const states: GameStates = {
-        ...state.currentGame.states,
-        isMoveLoading: false, // this is one being updated
-      }
-      return { ...state, currentGame: { ...state.currentGame, states, board: action.payload.board, temp: undefined } };
+
+      return { ...state, currentGame: { ...state.currentGame, board: action.payload.board, temp: undefined } };
     }
     case SeasonAction.UPDATE_WINNER: {
       const { gameId } = action.payload
       if (!state.currentGame || gameId !== state.currentGame.gameId) {
-        // if event is for a different game ignore
+        // @todo find game in games array and update
         return state;
       }
       return {...state, currentGame: {...state.currentGame, winner: action.payload.winningAddress}};
