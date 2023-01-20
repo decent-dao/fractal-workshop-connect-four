@@ -41,50 +41,52 @@ export function VersusBadge() {
     color: 'black.900',
   }
   return (
-    <Flex m={4} gap={8} bg={!isGameOver ? 'black.900-semi-transparent' : 'green.500'} w='fit-content' p={8} rounded="lg">
+    <Flex
+      m={4}
+      gap={8}
+      bg={!isGameOver ? 'black.900-semi-transparent' : 'green.500'}
+      alignItems='center'
+      justifyContent='center'
+      w='full'
+      p={8}
+      rounded='lg'
+    >
       <Badge
         as={motion.div}
         animation={currentTeamTurn === 1 && !isGameOver ? animationLeft : undefined}
-        border='8px solid'
+        border='4px solid'
         borderColor='transparent'
-        rounded="lg"
+        rounded='lg'
         sx={
           isTeamOneWinner
             ? WINNER_BADGE_COLORS
             : isTeamTwoWinner
-              ? LOSER_BADGE_COLORS
-              : CHIP_COLORS[0]
+            ? LOSER_BADGE_COLORS
+            : CHIP_COLORS[0]
         }
         px={2}
       >
-        <Text textStyle='text-4xl-mono-bold'>{teamOne.displayName}</Text>
+        <Text textStyle='text-2xl-mono-bold'>{teamOne.displayName}</Text>
       </Badge>
-      <Badge
-        bg='transparent'
-        textStyle='text-4xl-mono-bold'
-        color='white'
-        px={4}
-      >
-        <Text textStyle='text-4xl-mono-bold'>VS</Text>
+      <Badge bg='transparent' color='white'>
+        <Text textStyle='text-2xl-mono-regular'>VS</Text>
       </Badge>
       <Badge
         as={motion.div}
         animation={currentTeamTurn === 2 && !isGameOver ? animationRight : undefined}
-        border='8px solid'
+        border='4px solid'
         borderColor='transparent'
-        rounded="lg"
+        rounded='lg'
         sx={
           isTeamTwoWinner
             ? WINNER_BADGE_COLORS
             : isTeamOneWinner
-              ? LOSER_BADGE_COLORS
-              : CHIP_COLORS[1]
+            ? LOSER_BADGE_COLORS
+            : CHIP_COLORS[1]
         }
         px={2}
       >
-        <Text textStyle='text-4xl-mono-bold' animation='pu'>
-          {teamTwo.displayName}
-        </Text>
+        <Text textStyle='text-2xl-mono-bold'>{teamTwo.displayName}</Text>
       </Badge>
     </Flex>
   )
