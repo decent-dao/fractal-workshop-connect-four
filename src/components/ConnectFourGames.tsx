@@ -37,7 +37,6 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
   useEffect(() => {
     const retrieveGameData = async () => {
       const game = await getGameData(gameId)
-      console.log('🚀 ~ file: ConnectFourGames.tsx:40 ~ game', game)
       setGame(game)
     }
     retrieveGameData()

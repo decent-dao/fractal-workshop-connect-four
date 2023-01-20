@@ -23,10 +23,11 @@ export const ChipFalling = forwardRef<IChipFalling, 'div'>(({ square }, ref) => 
         h='full'
         rounded='full'
         animation={isOutOfBounds ? animationDownTraveling : undefined}
-        sx={{ ...CHIP_COLORS[square.team + 1] }}
-        boxSize="5rem"
-        left="2.5rem"
+        sx={{ ...CHIP_COLORS[square.team - 1] }}
+        boxSize={24}
         position='absolute'
+        left={10}
+        right={10}
         opacity='0'
         transform='translateY(-150%)'
       />

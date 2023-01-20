@@ -1,7 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { ConnectSquare } from '../types'
 import { Box } from '@chakra-ui/react'
 import { CHIP_COLORS } from '../constants'
+import { useConnectFourGame } from '../../../provider/store/hooks/useConnectFourGame'
+import { useStore } from '../../../provider/store/StoreProvider'
+import { SeasonAction } from '../../../provider/store/season/actions'
 
 export function SquareCenter({
   square,
@@ -13,10 +16,32 @@ export function SquareCenter({
   const locationRef = useRef<HTMLDivElement>(null)
   const isOutOfBounds = square.location.includes('x')
 
+  const { getBoardData } = useConnectFourGame({})
+  const { currentSeason: { currentGame }, dispatch } = useStore()
+
+  const updateBoard = useCallback(async () => {
+    if (!currentGame) {
+      return;
+    }
+    const board = await getBoardData(currentGame.gameId);
+    if(!board) {
+      // @todo if this for some reason fails, would need to refresh. possibly add a retry here.
+      return;
+    }
+    dispatch({
+      type: SeasonAction.UPDATE_MOVE_FINISHED,
+      payload: { board }
+    })
+  }, [currentGame, dispatch, getBoardData])
+
   useEffect(() => {
     const fallingPieceEle = fallingChipRef.current
     const locationEle = locationRef.current
     let intervalId: NodeJS.Timer
+    const animationEndListener = () => {
+      updateBoard();
+      clearInterval(intervalId)
+    }
     // @todo add animation boolean? remove ref?
     if (fallingPieceEle && locationEle && !isOutOfBounds) {
       fallingPieceEle.addEventListener('animationstart', () => {
@@ -28,22 +53,24 @@ export function SquareCenter({
           const lrb = locationRect.top + 96
           if (square.team) {
             if (fallingRectbottom >= lrt && fallingRectbottom <= lrb) {
-              // @todo when it collides with piece below; end animation; add piece in spot
+              const animations = fallingChipRef.current?.getAnimations()
+              if(animations) {
+                const hopefullyThisAnimation = animations[0];
+                hopefullyThisAnimation.cancel()
+              }
               clearInterval(intervalId)
             }
             return
           }
           clearInterval(intervalId)
         }, 1)
-        fallingPieceEle.addEventListener('animationend', () => {
-          clearInterval(intervalId)
-        })
+        fallingPieceEle.addEventListener('animationcancel', animationEndListener)
       })
       return () => {
-        fallingPieceEle.removeEventListener('animationstart', () => { })
+        fallingPieceEle.removeEventListener('animationcancel', animationEndListener)
       }
     }
-  }, [fallingChipRef, square, isOutOfBounds])
+  }, [fallingChipRef, square, isOutOfBounds, updateBoard])
   return (
     <Box ref={locationRef}>
       {square.team && !isOutOfBounds && (
