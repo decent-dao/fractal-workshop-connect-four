@@ -7,7 +7,7 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
     case SeasonAction.SET_SEASON:
       return { ...state, ...action.payload }
     case SeasonAction.UPDATE_GAME_IDS: {
-      const gameIds = new Array(action.payload.toNumber() + 1).fill(undefined).map((_, i) => {
+      const gameIds = new Array(action.payload.toNumber()).fill(undefined).map((_, i) => {
         return i + 1
       })
       return { ...state, gameIds }
