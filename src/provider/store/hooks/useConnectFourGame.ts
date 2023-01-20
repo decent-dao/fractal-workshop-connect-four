@@ -1,7 +1,7 @@
 import { ConnectSquare } from './../../../features/ConnectFour/types';
 import { useStore } from './../StoreProvider';
 import { GameBase } from './../types';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 import { useAddressLookup } from './../../../hooks/utils/useAddressLookup';
 import { SeasonAction } from '../season/actions';
 
@@ -37,8 +37,9 @@ export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
     try {
 
       const board = await currentSeason.connectFourContract.getGameBoard(_gameId);
-
-      const connectBoard: ConnectSquare[][] = [...board, new Array(6).fill('x')].map((col, column) => col.map((square, row) => {
+      const typeedBoard: (number | string)[][] = [...board]
+      typeedBoard.push(new Array(6).fill('x'))
+      const connectBoard: ConnectSquare[][] = typeedBoard.reverse().map((col, column) => col.map((square, row) => {
         if (square === 1 || square === 2) {
           return {
             location: `${column}:${row}`,
@@ -54,13 +55,13 @@ export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
           location: `${column}:${row}`
         }
       }))
-      return connectBoard.reverse()
-    } catch {
-      console.error('🚀 There was a problem retreiving game')
+      return connectBoard
+    } catch (e) {
+      console.error('🚀 There was a problem retreiving game', e)
     }
   }, [currentSeason])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!currentSeason.currentGame && gameId) {
       const retrieveData = async () => {
         // get game data
