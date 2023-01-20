@@ -1,12 +1,12 @@
 export const CHIP_COLORS = [
   // team one
   {
-    shadow: '0px 0px 8px 8px inset #FFFFFFad, 0px 0px 8px 8px inset #000000ad',
-    bg: '#FFF'
+    bg: 'grayscale.100',
+    color: 'black.900'
   },
   // team two
   {
-    shadow: '0px 0px 8px 8px inset #ec221ead, 0px 0px 8px 8px inset #FFFFFFad',
-    bg: '#ec221eff'
+    bg: '#ec221eff',
+    color: 'grayscale.100'
   }
 ]

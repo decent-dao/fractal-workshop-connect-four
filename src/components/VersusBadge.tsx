@@ -1,42 +1,90 @@
-import { Flex, Badge, Skeleton } from '@chakra-ui/react';
+import { Flex, Badge, Skeleton, Text, keyframes } from '@chakra-ui/react'
+import { constants } from 'ethers'
+import { CHIP_COLORS } from '../features/ConnectFour/constants'
+import { useStore } from '../provider/store/StoreProvider'
+import { motion } from 'framer-motion'
 
-interface IVersusBadge {
-  isGameOver: boolean,
-  isTeamOneWinner: boolean,
-  isTeamTwoWinner: boolean,
-  teamOneDisplayName: string,
-  teamTwoDisplayName: string,
-}
+const animationKeyframesLeft = keyframes`
+  0% { transform: scale(1); border-color: #fabd2e00 }
+  50% { transform: scale(1.10); border-color: #fabd2eff }
+  100% { transform: scale(1); border-color: #fabd2e00 }
+`
 
-export function VersusBadge({ isGameOver, isTeamOneWinner, isTeamTwoWinner, teamOneDisplayName, teamTwoDisplayName }: IVersusBadge) {
-  if (!teamOneDisplayName || !teamTwoDisplayName) {
-    return <Skeleton startColor='grayscale.200' w="full" />
+const animationLeft = `${animationKeyframesLeft} 2s linear infinite`
+
+const animationKeyframesRight = keyframes`
+  0% { transform: scale(1); border-color: #fabd2e00 }
+  50% { transform: scale(1.10); border-color: #fabd2eff }
+  100% { transform: scale(1); border-color: #fabd2e00 }
+`
+
+const animationRight = `${animationKeyframesRight} 1s ease-in-out infinite`
+
+export function VersusBadge() {
+  const {
+    currentSeason: { currentGame },
+  } = useStore()
+  if (!currentGame) {
+    return <Skeleton startColor='grayscale.200' w='full' />
+  }
+  const { winner, teamOne, teamTwo, turn } = currentGame
+  const currentTeamTurn = turn % 2 == 0 ? 2 : 1
+  const isGameOver = winner !== constants.AddressZero
+  const isTeamOneWinner = winner === teamOne.full
+  const isTeamTwoWinner = winner === teamTwo.full
+  const WINNER_BADGE_COLORS = {
+    bg: 'green.500',
+    color: 'black.900',
+  }
+  const LOSER_BADGE_COLORS = {
+    bg: 'alert-red.normal',
+    color: 'black.900',
   }
   return (
-    <Flex
-      m={4}
-      bg={!isGameOver ? 'alert-red.normal' : 'green.500'}
-      w="fit-content"
-      rounded="50%"
-    >
+    <Flex m={4} gap={8} bg={!isGameOver ? 'black.900-semi-transparent' : 'green.500'} w='fit-content' p={8} rounded="lg">
       <Badge
-        bg={isTeamOneWinner ? 'green.500' : isTeamTwoWinner ? 'alert-red.normal' : 'sand.700'}
-        color='black.900'
+        as={motion.div}
+        animation={currentTeamTurn === 1 && !isGameOver ? animationLeft : undefined}
+        border='8px solid'
+        borderColor='transparent'
+        rounded="lg"
+        sx={
+          isTeamOneWinner
+            ? WINNER_BADGE_COLORS
+            : isTeamTwoWinner
+              ? LOSER_BADGE_COLORS
+              : CHIP_COLORS[0]
+        }
         px={2}
-        transform='skew(20deg)'
       >
-        {teamOneDisplayName}
-      </Badge>
-      <Badge bg='transparent' color='black.900'>
-        VS
+        <Text textStyle='text-4xl-mono-bold'>{teamOne.displayName}</Text>
       </Badge>
       <Badge
-        bg={isTeamTwoWinner ? 'green.500' : isTeamOneWinner ? 'alert-red.normal' : 'sand.700'}
-        color='black.900'
-        px={2}
-        transform='skew(-20deg)'
+        bg='transparent'
+        textStyle='text-4xl-mono-bold'
+        color='white'
+        px={4}
       >
-        {teamTwoDisplayName}
+        <Text textStyle='text-4xl-mono-bold'>VS</Text>
+      </Badge>
+      <Badge
+        as={motion.div}
+        animation={currentTeamTurn === 2 && !isGameOver ? animationRight : undefined}
+        border='8px solid'
+        borderColor='transparent'
+        rounded="lg"
+        sx={
+          isTeamTwoWinner
+            ? WINNER_BADGE_COLORS
+            : isTeamOneWinner
+              ? LOSER_BADGE_COLORS
+              : CHIP_COLORS[1]
+        }
+        px={2}
+      >
+        <Text textStyle='text-4xl-mono-bold' animation='pu'>
+          {teamTwo.displayName}
+        </Text>
       </Badge>
     </Flex>
   )
