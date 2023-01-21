@@ -62,7 +62,7 @@ export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
   }, [currentSeason])
 
   useLayoutEffect(() => {
-    if (!currentSeason.currentGame && gameId) {
+    if (currentSeason.currentGame?.gameId !== gameId && gameId) {
       const retrieveData = async () => {
         // get game data
         const game = await getGameData(Number(gameId))
