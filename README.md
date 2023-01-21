@@ -17,6 +17,7 @@ if you are not a member of a DAO and would like to create your own using Fractal
 
 There are two main commands for gameplay.
 
+`Challenge`: Opponent can be a Safe Address or any other DAO or account address that is able to interact with contracts.
 ```shell
 Target Address = [current season address]
 Function Name = challenge
@@ -28,6 +29,9 @@ Target Address = [current season address]
 Function Name = makeMove
 Function Signature = uint8 gameId, uint8 column
 ```
+
+## Playing Solo
+Want to challange as an ethereum account. Currently the only way to play is using `Etherscan`'s write contract feature. Search for the current season address on the correct network's etherscan. In the `Contract` tab, click on `Write Contract`. After connecting your web3 wallet you can use the methods here to interact directly with the contracts.
 
 ## Gameplay
 ### FAQs
