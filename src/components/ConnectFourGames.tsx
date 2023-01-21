@@ -1,7 +1,7 @@
 import { Button, Flex, Link, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
-import { Copy } from '@decent-org/fractal-ui'
+import { Check, CloseX, Copy } from '@decent-org/fractal-ui'
 import { constants } from 'ethers'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../features/routes/routes'
 import { useCopyText } from '../hooks/utils/useCopyText'
@@ -47,6 +47,21 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
   const [game, setGame] = useState<GameBase>()
   const { getGameData } = useConnectFourGame({})
   const navigate = useNavigate()
+
+  const isTeamOneWinner = useMemo(() => {
+    if (!game) {
+      return false
+    }
+    return game.winner === game.teamOne.full
+  }, [game])
+
+  const isTeamTwoWinner = useMemo(() => {
+    if (!game) {
+      return false
+    }
+    return game.winner === game.teamTwo.full
+  }, [game])
+
   useEffect(() => {
     const retrieveGameData = async () => {
       const game = await getGameData(gameId)
@@ -63,15 +78,21 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
   return (
     <Tr>
       <Td>{game.gameId}</Td>
-      <Td>
+      <Td color={isTeamOneWinner ? 'green.500' : 'alert-red.normal'}>
         <SkeletonText isLoaded={!!game.teamOne.displayName} startColor="grayscale.200">
-          {game.teamOne.displayName}
+          <Flex alignItems="center" gap={4}>
+            <Text>{game.teamOne.displayName}</Text>
+            {isTeamOneWinner ? <Check /> : <CloseX />}
+          </Flex>
         </SkeletonText>
       </Td>
 
-      <Td>
+      <Td color={isTeamTwoWinner ? 'green.500' : 'alert-red.normal'}>
         <SkeletonText isLoaded={!!game.teamTwo.displayName} startColor="grayscale.200">
-          {game.teamTwo.displayName}
+          <Flex alignItems="center" gap={4}>
+            <Text>{game.teamTwo.displayName}</Text>
+            {isTeamTwoWinner ? <Check /> : <CloseX />}
+          </Flex>
         </SkeletonText>
       </Td>
 

@@ -32,14 +32,7 @@ export function VersusBadge() {
   const isGameOver = winner !== constants.AddressZero
   const isTeamOneWinner = winner === teamOne.full
   const isTeamTwoWinner = winner === teamTwo.full
-  const WINNER_BADGE_COLORS = {
-    bg: 'green.500',
-    color: 'black.900',
-  }
-  const LOSER_BADGE_COLORS = {
-    bg: 'alert-red.normal',
-    color: 'black.900',
-  }
+  
   return (
     <Flex
       m={4}
@@ -57,15 +50,11 @@ export function VersusBadge() {
         border='4px solid'
         borderColor='transparent'
         rounded='lg'
-        sx={
-          isTeamOneWinner
-            ? WINNER_BADGE_COLORS
-            : isTeamTwoWinner
-            ? LOSER_BADGE_COLORS
-            : CHIP_COLORS[0]
-        }
+        position="relative"
+        sx={CHIP_COLORS[0]}
         px={2}
       >
+        {isTeamOneWinner && <Text>Winner</Text>}
         <Text textStyle='text-xl-mono-bold'>{teamOne.displayName}</Text>
       </Badge>
       <Badge bg='transparent' color='white'>
@@ -76,16 +65,12 @@ export function VersusBadge() {
         animation={currentTeamTurn === 2 && !isGameOver ? animationRight : undefined}
         border='4px solid'
         borderColor='transparent'
+        position="relative"
         rounded='lg'
-        sx={
-          isTeamTwoWinner
-            ? WINNER_BADGE_COLORS
-            : isTeamOneWinner
-            ? LOSER_BADGE_COLORS
-            : CHIP_COLORS[1]
-        }
+        sx={CHIP_COLORS[1]}
         px={2}
-      >
+        >
+        {isTeamTwoWinner && <Text>Winner</Text>}
         <Text textStyle='text-xl-mono-bold'>{teamTwo.displayName}</Text>
       </Badge>
     </Flex>
