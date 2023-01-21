@@ -1,6 +1,6 @@
 import { createHashRouter } from 'react-router-dom';
-import { ConnectFourGames } from '../../components/ConnectFourGames';
-import { ConnectFour } from '../ConnectFour';
+import { ConnectFourGames } from '../components/ConnectFourGames';
+import { ConnectFour } from '../features/ConnectFour';
 import { ROUTES } from './routes';
 
 export const router = createHashRouter([

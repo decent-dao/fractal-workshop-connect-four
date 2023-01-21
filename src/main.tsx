@@ -5,7 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from '@decent-org/fractal-ui'
 import { StoreProvider } from './provider/store/StoreProvider'
 import { RouterProvider } from 'react-router-dom'
-import { router } from './features/routes/router'
+import { router } from './routes/router'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
