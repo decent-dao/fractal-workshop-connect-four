@@ -1,16 +1,23 @@
 import { Button, Flex, Link, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Copy } from '@decent-org/fractal-ui'
 import { constants } from 'ethers'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../features/routes/routes'
+import { useCopyText } from '../hooks/utils/useCopyText'
 import { useConnectFourGame } from '../provider/store/hooks/useConnectFourGame'
 import { useStore } from '../provider/store/StoreProvider'
 import { GameBase } from '../provider/store/types'
 
 export function ConnectFourGames() {
   const { currentSeason: { gameIds } } = useStore()
+  const copyTextToClipboard = useCopyText()
   return (
     <TableContainer maxW="6xl" mx="auto">
+      <Flex gap={2} alignItems="center">
+        <Text textStyle="text-base-mono-medium">Current Season Address:</Text>
+        <Text textStyle="text-base-mono-bold" color="grayscale.white" bg="black.900" px={4} py={2} rounded="md" gap="4" letterSpacing="0.125rem" cursor="pointer" display="flex" alignItems="center" onClick={() => copyTextToClipboard(import.meta.env.VITE_CURRENT_SEASON_ADDRESS)}><Copy /> {import.meta.env.VITE_CURRENT_SEASON_ADDRESS}</Text>
+      </Flex>
       <Text textStyle="text-lg-mono-semibold" my={4}>
         For Instructions on how to start a game and play see
         <Link ml={2} color="blue.400" href='https://github.com/curiousity-labs/fractal-workshop-connect-four'>
