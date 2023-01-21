@@ -11,7 +11,8 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
       position='relative'
       >
       <Center
-        boxSize="7rem"
+        w="7rem"
+        h={isOutOfBounds ? '1rem' : '7rem'}
         zIndex={0}
         border={!isOutOfBounds ? '20px solid': undefined}
         borderColor="#ffe19dff"
