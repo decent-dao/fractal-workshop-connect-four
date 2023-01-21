@@ -1,7 +1,7 @@
 import { ConnectSquare } from './../../../features/ConnectFour/types';
 import { useStore } from './../StoreProvider';
 import { GameBase } from './../types';
-import { useCallback, useLayoutEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useAddressLookup } from './../../../hooks/utils/useAddressLookup';
 import { SeasonAction } from '../season/actions';
 
@@ -12,7 +12,6 @@ interface IUseConnectFourGame {
 export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
   const { currentSeason, dispatch } = useStore()
   const { lookupAddress } = useAddressLookup()
-
   const getGameData = useCallback(async (_gameId: number): Promise<GameBase | undefined> => {
     if (!currentSeason.connectFourContract) {
       return;
@@ -40,19 +39,19 @@ export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
       const typeedBoard: (number | string)[][] = [...board]
       typeedBoard.push(new Array(6).fill('x'))
       const connectBoard: ConnectSquare[][] = typeedBoard.reverse().map((col, column) => col.map((square, row) => {
-        if (square === 1 || square === 2) {
-          return {
-            location: `${column}:${row}`,
-            team: square
-          }
-        }
         if (square === 'x') {
           return {
             location: `${square}:${row}`
           }
         }
+        if (square === 1 || square === 2) {
+          return {
+            location: `${6 - column}:${row}`,
+            team: square
+          }
+        }
         return {
-          location: `${column}:${row}`
+          location: `${6 - column}:${row}`
         }
       }))
       return connectBoard
@@ -61,22 +60,22 @@ export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
     }
   }, [currentSeason])
 
-  useLayoutEffect(() => {
-    if (currentSeason.currentGame?.gameId !== gameId && gameId) {
-      const retrieveData = async () => {
-        // get game data
-        const game = await getGameData(Number(gameId))
-        // get board data
-        const board = await getBoardData(Number(gameId))
-        // dispatch game to state
-        if (!!game && !!board) {
+  useEffect(() => {
+    const retrieveData = async () => {
+      // get game data
+      const game = await getGameData(Number(gameId))
+      // get board data
+      const board = await getBoardData(Number(gameId))
+      // dispatch game to state
+      if (!!game && !!board) {
 
-          dispatch({
-            type: SeasonAction.SET_GAME,
-            payload: { ...game, board }
-          })
-        }
+        dispatch({
+          type: SeasonAction.SET_GAME,
+          payload: { ...game, board }
+        })
       }
+    }
+    if (currentSeason.currentGame?.gameId !== Number(gameId) && gameId) {
       retrieveData()
     }
   }, [gameId, currentSeason.currentGame, getGameData, getBoardData, dispatch])
