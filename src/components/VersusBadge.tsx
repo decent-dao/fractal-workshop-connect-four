@@ -66,7 +66,7 @@ export function VersusBadge() {
         }
         px={2}
       >
-        <Text textStyle='text-2xl-mono-bold'>{teamOne.displayName}</Text>
+        <Text textStyle='text-xl-mono-bold'>{teamOne.displayName}</Text>
       </Badge>
       <Badge bg='transparent' color='white'>
         <Text textStyle='text-2xl-mono-regular'>VS</Text>
@@ -86,7 +86,7 @@ export function VersusBadge() {
         }
         px={2}
       >
-        <Text textStyle='text-2xl-mono-bold'>{teamTwo.displayName}</Text>
+        <Text textStyle='text-xl-mono-bold'>{teamTwo.displayName}</Text>
       </Badge>
     </Flex>
   )
