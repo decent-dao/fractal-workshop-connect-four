@@ -62,7 +62,7 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
     retrieveGameData()
   }, [getGameData, gameId])
 
-  if (!game) {
+  if (!game || game.teamOne.full === constants.AddressZero) {
     return null
   }
 

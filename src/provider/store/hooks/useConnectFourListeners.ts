@@ -21,6 +21,7 @@ export function useConnectFourListeners({ currentSeason, seasonDispatch }: IUseL
       return;
     }
     const createGameListener: TypedListener<GameCreatedEvent> = (gameId) => {
+      setTimeout(() => {}, 5000);
       seasonDispatch({
         type: SeasonAction.UPDATE_GAME_IDS,
         payload: BigNumber.from(gameId)
@@ -41,6 +42,7 @@ export function useConnectFourListeners({ currentSeason, seasonDispatch }: IUseL
       return;
     }
     const turnTakenListener: TypedListener<TurnTakenEvent> = (gameId, teamAddress, column) => {
+      setTimeout(() => {}, 2000);
       seasonDispatch({
         type: SeasonAction.UPDATE_TURN,
         payload: { gameId: gameId.toNumber(), teamAddress, column }
