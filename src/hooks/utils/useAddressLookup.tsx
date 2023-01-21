@@ -59,6 +59,11 @@ export const useAddressLookup = (address?: string) => {
         addrDispatch({ type: AddressLookupAction.RESET })
         return intialAddressState
       }
+      // check local storage
+      const savedAddressInfo = localStorage.getItem(_address)
+      if (savedAddressInfo) {
+        return JSON.parse(savedAddressInfo)[provider.network.chainId]
+      }
       const registryContract = baseContracts.fractalRegistryBase
       const [ensName, registryDAONameEvent, contractGetCall] = await Promise.all([
         provider.lookupAddress(_address).catch(() => null),
@@ -73,8 +78,7 @@ export const useAddressLookup = (address?: string) => {
       const isSafe = !!contractGetCall
       const truncated = addressSubString(_address)
       const displayName = ensName || registryDAOName || truncated
-
-      return {
+      const addressInfo = {
         full: _address,
         ensName,
         registryDAOName,
@@ -82,6 +86,8 @@ export const useAddressLookup = (address?: string) => {
         isSafe,
         displayName,
       }
+      localStorage.setItem(_address, JSON.stringify({ [provider.network.chainId]: addressInfo }))
+      return addressInfo
     },
     [provider, baseContracts],
   )
