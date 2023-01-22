@@ -1,6 +1,6 @@
 import { Flex, Badge, Skeleton, Text, keyframes } from '@chakra-ui/react'
 import { constants } from 'ethers'
-import { CHIP_COLORS } from '../../constants'
+import { TEAM_COLORS } from '../../constants'
 import { useStore } from '../../provider/store/StoreProvider'
 import { motion } from 'framer-motion'
 
@@ -51,7 +51,7 @@ export function VersusBadge() {
         borderColor='transparent'
         rounded='lg'
         position="relative"
-        sx={CHIP_COLORS[0]}
+        sx={TEAM_COLORS[0]}
         px={2}
       >
         {isTeamOneWinner && <Text>Winner</Text>}
@@ -67,7 +67,7 @@ export function VersusBadge() {
         borderColor='transparent'
         position="relative"
         rounded='lg'
-        sx={CHIP_COLORS[1]}
+        sx={TEAM_COLORS[1]}
         px={2}
         >
         {isTeamTwoWinner && <Text>Winner</Text>}
