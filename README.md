@@ -9,7 +9,7 @@ Do more with DAOs...like play games. With the power of a simple descisions made 
 - [Fractal Framework](https://app.dev.fractalframework.xyz/)
 
 ## Season Address
-This address is the current game contract. Future updates are planned for a site to play and interact directly with the contracts. For now view [Environment Variable: VITE_CURRENT_SEASON_ADDRESS](./env) for current address.
+Located at the top of the site [Fractal Connect Four](https://fractal-connect-four.netlify.app/). This will be used to interact with the current game along with the game id.
 
 ## Play as a DAO
 
