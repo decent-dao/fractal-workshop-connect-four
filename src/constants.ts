@@ -10,3 +10,5 @@ export const CHIP_COLORS = [
     color: 'grayscale.100'
   }
 ]
+
+export const BOARD_PADDING = '32px solid'

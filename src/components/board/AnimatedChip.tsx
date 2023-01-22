@@ -8,11 +8,11 @@ const animateDownTraveling = keyframes`
 `
 const animationDownTraveling = `${animateDownTraveling} 6s 1`
 
-interface IChipFalling {
+interface IAnimatedChip {
   square: ConnectSquare;
 }
 
-export const ChipFalling = forwardRef<IChipFalling, 'div'>(({ square }, ref) => {
+export const AnimatedChip = forwardRef<IAnimatedChip, 'div'>(({ square }, ref) => {
   const isOutOfBounds = square.location.includes('x')
 
   if (square.team && isOutOfBounds) {

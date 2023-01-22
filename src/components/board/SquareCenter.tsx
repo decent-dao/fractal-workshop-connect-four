@@ -8,10 +8,10 @@ import { SeasonAction } from '../../provider/store/season/actions'
 
 export function SquareCenter({
   square,
-  fallingChipRef,
+  animatedChipRef,
 }: {
   square: ConnectSquare
-  fallingChipRef: React.RefObject<HTMLDivElement>
+  animatedChipRef: React.RefObject<HTMLDivElement>
 }) {
   const locationRef = useRef<HTMLDivElement>(null)
   const isOutOfBounds = square.location.includes('x')
@@ -35,7 +35,7 @@ export function SquareCenter({
   }, [currentGame, dispatch, getBoardData])
 
   useEffect(() => {
-    const fallingPieceEle = fallingChipRef.current
+    const fallingPieceEle = animatedChipRef.current
     const locationEle = locationRef.current
     let intervalId: NodeJS.Timer
     const animationEndListener = () => {
@@ -53,7 +53,7 @@ export function SquareCenter({
           const lrb = locationRect.top + 96
           if (square.team) {
             if (fallingRectbottom >= lrt && fallingRectbottom <= lrb) {
-              const animations = fallingChipRef.current?.getAnimations()
+              const animations = animatedChipRef.current?.getAnimations()
               if(animations) {
                 const hopefullyThisAnimation = animations[0];
                 hopefullyThisAnimation.cancel()
@@ -70,7 +70,7 @@ export function SquareCenter({
         fallingPieceEle.removeEventListener('animationcancel', animationEndListener)
       }
     }
-  }, [fallingChipRef, square, isOutOfBounds, updateBoard])
+  }, [animatedChipRef, square, isOutOfBounds, updateBoard])
   return (
     <Box ref={locationRef}>
       {square.team && !isOutOfBounds && (
