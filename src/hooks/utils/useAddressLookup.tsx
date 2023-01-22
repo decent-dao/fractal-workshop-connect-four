@@ -10,6 +10,18 @@ export type AddressInfo = {
   registryDAOName: string | null
   isSafe: boolean
   displayName: string | null
+  addressURL: string | null
+}
+
+// @todo make this for network friendly
+export const ADDRESS_URLS: {[key: string]: (address: string) => string} = {
+  etherscan: (address: string) => `https://goerli.etherscan.io/address/${address}`,
+  gnosis: (address: string) => `https://app.safe.global/gor:${address}`,
+  fractal: (address: string) => `https://app.dev.fractalframework.xyz/#/daos/${address}`
+}
+
+export const getAddressURL = (address: string, typeIndex: string) => {
+  return ADDRESS_URLS[typeIndex](address);
 }
 
 export const intialAddressState = {
@@ -19,6 +31,7 @@ export const intialAddressState = {
   registryDAOName: null,
   isSafe: false,
   displayName: null,
+  addressURL: null
 }
 
 enum AddressLookupAction {
@@ -59,11 +72,7 @@ export const useAddressLookup = (address?: string) => {
         addrDispatch({ type: AddressLookupAction.RESET })
         return intialAddressState
       }
-      // check local storage
-      const savedAddressInfo = localStorage.getItem(_address)
-      if (savedAddressInfo) {
-        return JSON.parse(savedAddressInfo)[provider.network.chainId]
-      }
+
       const registryContract = baseContracts.fractalRegistryBase
       const [ensName, registryDAONameEvent, contractGetCall] = await Promise.all([
         provider.lookupAddress(_address).catch(() => null),
@@ -78,6 +87,8 @@ export const useAddressLookup = (address?: string) => {
       const isSafe = !!contractGetCall
       const truncated = addressSubString(_address)
       const displayName = ensName || registryDAOName || truncated
+
+      const addressType = registryDAOName ? 'fractal' : isSafe ? 'gnosis' : 'etherscan'
       const addressInfo = {
         full: _address,
         ensName,
@@ -85,8 +96,8 @@ export const useAddressLookup = (address?: string) => {
         truncated,
         isSafe,
         displayName,
+        addressURL: getAddressURL(_address, addressType)
       }
-      localStorage.setItem(_address, JSON.stringify({ [provider.network.chainId]: addressInfo }))
       return addressInfo
     },
     [provider, baseContracts],

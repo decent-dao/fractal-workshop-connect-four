@@ -107,27 +107,31 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
       <Td>{game.gameId}</Td>
       <Td>
         <SkeletonText isLoaded={!!game.teamOne.displayName} startColor='grayscale.200'>
-          <Flex
-            alignItems='center'
-            gap={4}
-            color={!isGameOver ? undefined : isTeamOneWinner ? 'green.500' : 'alert-red.normal'}
-          >
-            <Text>{game.teamOne.displayName}</Text>
-            {!isGameOver ? null : isTeamOneWinner ? <Check /> : <CloseX />}
-          </Flex>
+          <Link href={game.teamOne.addressURL!} rel="nooppener noreferer" target="_blank">
+            <Flex
+              alignItems='center'
+              gap={4}
+              color={!isGameOver ? undefined : isTeamOneWinner ? 'green.500' : 'alert-red.normal'}
+            >
+              <Text>{game.teamOne.displayName}</Text>
+              {!isGameOver ? null : isTeamOneWinner ? <Check /> : <CloseX />}
+            </Flex>
+          </Link>
         </SkeletonText>
       </Td>
 
       <Td>
         <SkeletonText isLoaded={!!game.teamTwo.displayName} startColor='grayscale.200'>
-          <Flex
-            alignItems='center'
-            gap={4}
-            color={!isGameOver ? undefined : isTeamTwoWinner ? 'green.500' : 'alert-red.normal'}
-          >
-            <Text>{game.teamTwo.displayName}</Text>
-            {!isGameOver ? null : isTeamTwoWinner ? <Check /> : <CloseX />}
-          </Flex>
+          <Link href={game.teamTwo.addressURL!} rel="nooppener noreferer" target="_blank">
+            <Flex
+              alignItems='center'
+              gap={4}
+              color={!isGameOver ? undefined : isTeamTwoWinner ? 'green.500' : 'alert-red.normal'}
+            >
+              <Text>{game.teamTwo.displayName}</Text>
+              {!isGameOver ? null : isTeamTwoWinner ? <Check /> : <CloseX />}
+            </Flex>
+          </Link>
         </SkeletonText>
       </Td>
 
