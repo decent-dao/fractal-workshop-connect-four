@@ -16,12 +16,11 @@ export function useConnectFourListeners({ currentSeason, seasonDispatch }: IUseL
    * @event subscribes to the create game event and adds to game id array
    */
   useEffect(() => {
-    const connectFourContract = currentSeason.connectFourContract
+    const { connectFourContract } = currentSeason
     if (!connectFourContract) {
       return;
     }
     const createGameListener: TypedListener<GameCreatedEvent> = (gameId) => {
-      setTimeout(() => {}, 5000);
       seasonDispatch({
         type: SeasonAction.UPDATE_GAME_IDS,
         payload: BigNumber.from(gameId)
@@ -31,45 +30,52 @@ export function useConnectFourListeners({ currentSeason, seasonDispatch }: IUseL
     return () => {
       connectFourContract.off(connectFourContract.filters.GameCreated(), createGameListener)
     }
-  }, [seasonDispatch, currentSeason.connectFourContract])
+  }, [seasonDispatch, currentSeason])
 
   /**
    * @event subscribes to the current games turn event event and adds to game id array
    */
   useEffect(() => {
-    const connectFourContract = currentSeason.connectFourContract
-    if (!connectFourContract) {
-      return;
-    }
+    const { connectFourContract, currentGame } = currentSeason
     const turnTakenListener: TypedListener<TurnTakenEvent> = (gameId, teamAddress, column) => {
-      setTimeout(() => {}, 2000);
       seasonDispatch({
         type: SeasonAction.UPDATE_TURN,
         payload: { gameId: gameId.toNumber(), teamAddress, column }
       })
+    }
+    if (!connectFourContract) {
+      return;
+    }
+    if(!currentGame) {
+      connectFourContract.off(connectFourContract.filters.TurnTaken(), turnTakenListener)
+      return;
     }
     connectFourContract.on(connectFourContract.filters.TurnTaken(), turnTakenListener)
     return () => {
       connectFourContract.off(connectFourContract.filters.TurnTaken(), turnTakenListener)
 
     }
-  }, [currentSeason.connectFourContract, seasonDispatch])
+  }, [currentSeason, seasonDispatch])
 
   // @todo game finished listener
   useEffect(() => {
-    const connectFourContract = currentSeason.connectFourContract
-    if (!connectFourContract) {
-      return;
-    }
-    const turnTakenListener: TypedListener<GameFinishedEvent> = (gameId, winningAddress) => {
+    const { connectFourContract, currentGame } = currentSeason
+    const gameFinishedListener: TypedListener<GameFinishedEvent> = (gameId, winningAddress) => {
       seasonDispatch({
         type: SeasonAction.UPDATE_WINNER,
         payload: { gameId: gameId.toNumber(), winningAddress }
       })
     }
-    connectFourContract.on(connectFourContract.filters.GameFinished(), turnTakenListener)
+    if (!connectFourContract) {
+      return;
+    }
+    if(!currentGame) {
+      connectFourContract.off(connectFourContract.filters.GameFinished(), gameFinishedListener)
+      return;
+    }
+    connectFourContract.on(connectFourContract.filters.GameFinished(), gameFinishedListener)
     return () => {
-      connectFourContract.off(connectFourContract.filters.GameFinished(), turnTakenListener)
+      connectFourContract.off(connectFourContract.filters.GameFinished(), gameFinishedListener)
 
     }
   }, [currentSeason, seasonDispatch])
