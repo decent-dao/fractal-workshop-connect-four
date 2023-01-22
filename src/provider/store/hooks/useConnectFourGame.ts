@@ -1,4 +1,4 @@
-import { ConnectSquare } from './../../../features/ConnectFour/types';
+import { ConnectSquare } from '../../../types';
 import { useStore } from './../StoreProvider';
 import { GameBase } from './../types';
 import { useCallback, useEffect } from 'react';

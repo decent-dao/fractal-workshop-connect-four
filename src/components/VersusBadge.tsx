@@ -1,6 +1,6 @@
 import { Flex, Badge, Skeleton, Text, keyframes } from '@chakra-ui/react'
 import { constants } from 'ethers'
-import { CHIP_COLORS } from '../features/ConnectFour/constants'
+import { CHIP_COLORS } from '../constants'
 import { useStore } from '../provider/store/StoreProvider'
 import { motion } from 'framer-motion'
 

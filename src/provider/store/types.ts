@@ -1,5 +1,5 @@
 import { Dispatch } from 'react'
-import { ConnectSquare } from './../../features/ConnectFour/types'
+import { ConnectSquare } from '../../types'
 import { AddressInfo } from './../../hooks/utils/useAddressLookup'
 import { ConnectFour } from 'b3-curious-contracts/typechain'
 import { SeasonActions } from './season/actions'

@@ -1,4 +1,4 @@
-import type { AddressInfo } from './../../hooks/utils/useAddressLookup';
+import type { AddressInfo } from './hooks/utils/useAddressLookup';
 
 export type Team = {
     color: string,

@@ -1,4 +1,4 @@
-import { ConnectSquare } from './../../../features/ConnectFour/types';
+import { ConnectSquare } from '../../../types';
 import { BigNumber } from 'ethers';
 import { GameBaseData, Season } from './../types'
 export enum SeasonAction {
