@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { ConnectSquare } from '../types'
+import { ConnectSquare } from '../../types'
 import { Box } from '@chakra-ui/react'
-import { CHIP_COLORS } from '../constants'
-import { useConnectFourGame } from '../provider/store/hooks/useConnectFourGame'
-import { useStore } from '../provider/store/StoreProvider'
-import { SeasonAction } from '../provider/store/season/actions'
+import { CHIP_COLORS } from '../../constants'
+import { useConnectFourGame } from '../../provider/store/hooks/useConnectFourGame'
+import { useStore } from '../../provider/store/StoreProvider'
+import { SeasonAction } from '../../provider/store/season/actions'
 
 export function SquareCenter({
   square,

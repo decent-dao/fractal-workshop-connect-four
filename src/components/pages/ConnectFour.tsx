@@ -1,13 +1,12 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Box } from '@chakra-ui/react'
 import { useRef } from 'react'
-import { GameContainer } from './GameContainer'
-import { SquareFrame } from './SquareFrame'
-import { SquareCenter } from './SquareCenter'
-import { ChipFalling } from './ChipFalling'
-import { useStore } from '../provider/store/StoreProvider'
+import { SquareFrame } from '../board/SquareFrame'
+import { SquareCenter } from '../board/SquareCenter'
+import { ChipFalling } from '../board/ChipFalling'
+import { useStore } from '../../provider/store/StoreProvider'
 import { useParams } from 'react-router-dom'
-import { useConnectFourGame } from '../provider/store/hooks/useConnectFourGame'
-import { VersusBadge } from './VersusBadge'
+import { useConnectFourGame } from '../../provider/store/hooks/useConnectFourGame'
+import { VersusBadge } from '../ui/VersusBadge'
 
 const BOARD_PADDING = '32px solid'
 
@@ -25,7 +24,7 @@ export function ConnectFour() {
     <Flex flexDirection="column" alignItems="center">
       <VersusBadge />
       <Flex justifyContent='center' h='full'>
-        <GameContainer>
+        <Box position="relative" overflow="hidden" h="fit-content">
           {currentGame.board.map((row, i) => {
             return (
               <Flex
@@ -46,7 +45,7 @@ export function ConnectFour() {
               </Flex>
             )
           })}
-        </GameContainer>
+        </Box>
       </Flex>
     </Flex>
   )

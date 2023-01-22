@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { ConnectSquare } from '../types'
+import { ConnectSquare } from '../../types'
 import { Box, Center } from '@chakra-ui/react'
 
 export function SquareFrame({ square, children }: { square: ConnectSquare; children?: ReactNode }) {

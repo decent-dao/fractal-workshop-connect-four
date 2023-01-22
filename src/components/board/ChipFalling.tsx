@@ -1,6 +1,6 @@
 import { Box, keyframes, forwardRef } from '@chakra-ui/react';
-import { CHIP_COLORS } from '../constants';
-import { ConnectSquare } from '../types'
+import { CHIP_COLORS } from '../../constants';
+import { ConnectSquare } from '../../types'
 
 const animateDownTraveling = keyframes`
 0%   { opacity: 100% }
