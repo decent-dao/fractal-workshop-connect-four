@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes/routes'
 import { useCopyText } from '../../hooks/utils/useCopyText'
-import { useConnectFourGame } from '../../provider/store/hooks/useConnectFourGame'
+import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 import { useStore } from '../../provider/store/StoreProvider'
 import { GameBase } from '../../provider/store/types'
 

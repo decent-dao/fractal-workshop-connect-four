@@ -2,8 +2,8 @@ import { Context, ReactNode, createContext, useContext, useMemo, useReducer } fr
 import { Store } from './types';
 import { seasonInitialState } from './constants';
 import { seasonReducer } from './season/reducer';
-import { useConnectFourSeason } from './hooks/useConnectFourSeason';
-import { useConnectFourListeners } from './hooks/useConnectFourListeners';
+import { useConnectFourListeners } from '../../hooks/connectFour/useConnectFourListeners';
+import { useConnectFourSeason } from '../../hooks/connectFour/useConnectFourSeason';
 
 const StoreContext = createContext<Store>({} as Store);
 export const useStore = (): Store => useContext(StoreContext as Context<Store>)

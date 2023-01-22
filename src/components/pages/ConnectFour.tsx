@@ -5,7 +5,7 @@ import { SquareCenter } from '../board/SquareCenter'
 import { AnimatedChip } from '../board/AnimatedChip'
 import { useStore } from '../../provider/store/StoreProvider'
 import { useParams } from 'react-router-dom'
-import { useConnectFourGame } from '../../provider/store/hooks/useConnectFourGame'
+import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 import { VersusBadge } from '../ui/VersusBadge'
 import { SquareRow } from '../board/SquareRow'
 

@@ -1,7 +1,7 @@
-import { SeasonAction, SeasonActions } from '../season/actions';
-import { useWeb3NetworkConfig } from '../../web3/Web3Provider';
-import { Season } from '../types';
 import { Dispatch, useEffect, useCallback } from 'react';
+import { SeasonActions, SeasonAction } from '../../provider/store/season/actions';
+import { Season } from '../../provider/store/types';
+import { useWeb3NetworkConfig } from '../../provider/web3/Web3Provider';
 
 interface IUseConnectFourSeason {
   currentSeason: Season

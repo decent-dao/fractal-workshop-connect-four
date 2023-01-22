@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import { ConnectSquare } from '../../types'
 import { Box } from '@chakra-ui/react'
 import { TEAM_COLORS } from '../../constants'
-import { useConnectFourGame } from '../../provider/store/hooks/useConnectFourGame'
+import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 import { useStore } from '../../provider/store/StoreProvider'
 import { SeasonAction } from '../../provider/store/season/actions'
 

@@ -1,9 +1,9 @@
-import { ConnectSquare } from '../../../types';
-import { useStore } from './../StoreProvider';
-import { GameBase } from './../types';
+import { ConnectSquare } from '../../types';
+import { useStore } from '../../provider/store/StoreProvider';
+import { GameBase } from '../../provider/store/types';
 import { useCallback, useEffect } from 'react';
-import { useAddressLookup } from './../../../hooks/utils/useAddressLookup';
-import { SeasonAction } from '../season/actions';
+import { useAddressLookup } from '../utils/useAddressLookup';
+import { SeasonAction } from '../../provider/store/season/actions';
 
 interface IUseConnectFourGame {
   gameId?: string;
