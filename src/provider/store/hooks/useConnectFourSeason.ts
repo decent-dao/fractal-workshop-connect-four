@@ -8,22 +8,25 @@ interface IUseConnectFourSeason {
   seasonDispatch: Dispatch<SeasonActions>
 }
 
-export function useConnectFourSeason({ currentSeason, seasonDispatch }: IUseConnectFourSeason) {
+export function useConnectFourSeason({ seasonDispatch }: IUseConnectFourSeason) {
   const { baseContracts } = useWeb3NetworkConfig()
 
   const retrieveSeason = useCallback(async () => {
     if (!baseContracts) {
       return;
     }
-
-    const connectFourContract = baseContracts.connectFourBase.attach(currentSeason.currentSeasonAddress)
+    const seasons = await baseContracts.connectFourFactoryBase.getGames()
+    if (!seasons.length) {
+      return;
+    }
+    const connectFourContract = baseContracts.connectFourBase.attach(seasons[0])
     const currentGameId = await connectFourContract.gameId()
     const gameIds = new Array(currentGameId.toNumber()).fill(undefined).map((_, i) => i);
     return {
       connectFourContract,
       gameIds
     }
-  }, [baseContracts, currentSeason.currentSeasonAddress])
+  }, [baseContracts])
 
   useEffect(() => {
     retrieveSeason().then((currentSeason) => {
