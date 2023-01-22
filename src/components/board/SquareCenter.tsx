@@ -42,7 +42,6 @@ export function SquareCenter({
       updateBoard();
       clearInterval(intervalId)
     }
-    // @todo add animation boolean? remove ref?
     if (fallingPieceEle && locationEle && !isOutOfBounds) {
       fallingPieceEle.addEventListener('animationstart', () => {
         intervalId = setInterval(() => {
@@ -52,17 +51,15 @@ export function SquareCenter({
           const lrt = locationRect.top
           const lrb = locationRect.top + 96
           if (square.team) {
-            if (fallingRectbottom >= lrt && fallingRectbottom <= lrb) {
+            if ((fallingRectbottom >= lrt && fallingRectbottom <= lrb) || fallingRectbottom === 0) {
               const animations = animatedChipRef.current?.getAnimations()
               if(animations) {
-                const hopefullyThisAnimation = animations[0];
-                hopefullyThisAnimation.cancel()
+                animations[0].cancel()
               }
               clearInterval(intervalId)
             }
             return
           }
-          clearInterval(intervalId)
         }, 1)
         fallingPieceEle.addEventListener('animationcancel', animationEndListener)
       })
