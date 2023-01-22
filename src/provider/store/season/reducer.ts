@@ -32,7 +32,7 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
         team: teamNumber
       };
 
-      return { ...state, currentGame: { ...state.currentGame, board: tempBoard } };
+      return { ...state, currentGame: { ...state.currentGame, turn: state.currentGame.turn + 1, board: tempBoard } };
     }
     case SeasonAction.UPDATE_MOVE_FINISHED: {
       if (!state.currentGame) {
@@ -40,7 +40,7 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
         return state;
       }
 
-      return { ...state, currentGame: { ...state.currentGame, turn: state.currentGame.turn++, board: action.payload.board, temp: undefined } };
+      return { ...state, currentGame: { ...state.currentGame, board: action.payload.board, temp: undefined } };
     }
     case SeasonAction.UPDATE_WINNER: {
       const { gameId } = action.payload
