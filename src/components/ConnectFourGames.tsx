@@ -1,4 +1,17 @@
-import { Button, Flex, Link, SkeletonText, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import {
+  Button,
+  Flex,
+  Link,
+  SkeletonText,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react'
 import { Check, CloseX, Copy } from '@decent-org/fractal-ui'
 import { constants } from 'ethers'
 import { useEffect, useState } from 'react'
@@ -10,17 +23,38 @@ import { useStore } from '../provider/store/StoreProvider'
 import { GameBase } from '../provider/store/types'
 
 export function ConnectFourGames() {
-  const { currentSeason: { gameIds } } = useStore()
+  const {
+    currentSeason: { gameIds, currentSeasonAddress },
+  } = useStore()
   const copyTextToClipboard = useCopyText()
   return (
-    <TableContainer maxW="6xl" mx="auto">
-      <Flex gap={2} alignItems="center">
-        <Text textStyle="text-base-mono-medium">Current Season Address:</Text>
-        <Text textStyle="text-base-mono-bold" color="grayscale.white" bg="black.900" px={4} py={2} rounded="md" gap="4" letterSpacing="0.125rem" cursor="pointer" display="flex" alignItems="center" onClick={() => copyTextToClipboard(import.meta.env.VITE_CURRENT_SEASON_ADDRESS)}><Copy /> {import.meta.env.VITE_CURRENT_SEASON_ADDRESS}</Text>
+    <TableContainer maxW='6xl' mx='auto'>
+      <Flex gap={2} alignItems='center'>
+        <Text textStyle='text-base-mono-medium'>Current Season Address:</Text>
+        <Text
+          textStyle='text-base-mono-bold'
+          color='grayscale.white'
+          bg='black.900'
+          px={4}
+          py={2}
+          rounded='md'
+          gap='4'
+          letterSpacing='0.125rem'
+          cursor='pointer'
+          display='flex'
+          alignItems='center'
+          onClick={() => copyTextToClipboard(currentSeasonAddress || '')}
+        >
+          <Copy /> {currentSeasonAddress}
+        </Text>
       </Flex>
-      <Text textStyle="text-lg-mono-semibold" my={4}>
+      <Text textStyle='text-lg-mono-semibold' my={4}>
         For Instructions on how to start a game and play see
-        <Link ml={2} color="blue.400" href='https://github.com/curiousity-labs/fractal-workshop-connect-four'>
+        <Link
+          ml={2}
+          color='blue.400'
+          href='https://github.com/curiousity-labs/fractal-workshop-connect-four'
+        >
           README
         </Link>
       </Text>
@@ -36,7 +70,9 @@ export function ConnectFourGames() {
           </Tr>
         </Thead>
         <Tbody textStyle='text-lg-sans-regular'>
-          {gameIds.map((gameId) => <TableBodyRow key={gameId} gameId={gameId} />)}
+          {gameIds.map((gameId) => (
+            <TableBodyRow key={gameId} gameId={gameId} />
+          ))}
         </Tbody>
       </Table>
     </TableContainer>
@@ -49,9 +85,9 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
   const navigate = useNavigate()
 
   const isTeamOneWinner = game?.winner === game?.teamOne.full
-  
+
   const isTeamTwoWinner = game?.winner === game?.teamTwo.full
-  
+
   const isGameOver = game?.winner !== constants.AddressZero
 
   useEffect(() => {
@@ -66,13 +102,16 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
     return null
   }
 
-
   return (
     <Tr>
       <Td>{game.gameId}</Td>
       <Td>
-        <SkeletonText isLoaded={!!game.teamOne.displayName} startColor="grayscale.200">
-          <Flex alignItems="center" gap={4} color={!isGameOver ? undefined : isTeamOneWinner ? 'green.500' : 'alert-red.normal'}>
+        <SkeletonText isLoaded={!!game.teamOne.displayName} startColor='grayscale.200'>
+          <Flex
+            alignItems='center'
+            gap={4}
+            color={!isGameOver ? undefined : isTeamOneWinner ? 'green.500' : 'alert-red.normal'}
+          >
             <Text>{game.teamOne.displayName}</Text>
             {!isGameOver ? null : isTeamOneWinner ? <Check /> : <CloseX />}
           </Flex>
@@ -80,9 +119,13 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
       </Td>
 
       <Td>
-        <SkeletonText isLoaded={!!game.teamTwo.displayName} startColor="grayscale.200">
-          <Flex alignItems="center" gap={4} color={!isGameOver ? undefined : isTeamTwoWinner ? 'green.500' : 'alert-red.normal'}>
-            <Text >{game.teamTwo.displayName}</Text>
+        <SkeletonText isLoaded={!!game.teamTwo.displayName} startColor='grayscale.200'>
+          <Flex
+            alignItems='center'
+            gap={4}
+            color={!isGameOver ? undefined : isTeamTwoWinner ? 'green.500' : 'alert-red.normal'}
+          >
+            <Text>{game.teamTwo.displayName}</Text>
             {!isGameOver ? null : isTeamTwoWinner ? <Check /> : <CloseX />}
           </Flex>
         </SkeletonText>
@@ -91,8 +134,10 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
       <Td>{game.winner !== constants.AddressZero ? 'Game Over' : 'In progress'}</Td>
       <Td isNumeric>{game.turn}</Td>
       <Td>
-        <Flex justifyContent="flex-end">
-          <Button variant='secondary' onClick={() => navigate(ROUTES.game.relative(game.gameId))}>View Game</Button>
+        <Flex justifyContent='flex-end'>
+          <Button variant='secondary' onClick={() => navigate(ROUTES.game.relative(game.gameId))}>
+            View Game
+          </Button>
         </Flex>
       </Td>
     </Tr>

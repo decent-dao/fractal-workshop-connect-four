@@ -10,6 +10,7 @@ export interface Store {
 }
 
 export interface Season {
+  currentSeasonAddress: string | null
   connectFourContract: ConnectFour | null
   gameIds: number[]
   currentGame: Game | null

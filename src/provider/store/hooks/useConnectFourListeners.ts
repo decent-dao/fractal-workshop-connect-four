@@ -1,10 +1,9 @@
 import { Dispatch, useEffect } from 'react';
-import { GameCreatedEvent } from 'b3-curious-contracts/typechain/BattleshipFactory';
 import { TypedListener } from 'b3-curious-contracts/typechain/common';
 import { BigNumber } from 'ethers';
 import { SeasonActions, SeasonAction } from '../season/actions';
 import { Season } from '../types';
-import { GameFinishedEvent, TurnTakenEvent } from 'b3-curious-contracts/typechain/ConnectFour';
+import { GameCreatedEvent, GameFinishedEvent, TurnTakenEvent } from 'b3-curious-contracts/typechain/ConnectFour';
 
 interface IUseListeners {
   currentSeason: Season

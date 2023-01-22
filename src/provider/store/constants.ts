@@ -2,6 +2,7 @@ import { Season, Store } from './types';
 
 
 export const seasonInitialState: Season = {
+  currentSeasonAddress: null,
   connectFourContract: null,
   gameIds: [],
   currentGame: null,
