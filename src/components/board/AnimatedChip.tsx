@@ -1,5 +1,5 @@
-import { Box, keyframes, forwardRef } from '@chakra-ui/react';
-import { TEAM_COLORS } from '../../constants';
+import { keyframes, forwardRef } from '@chakra-ui/react';
+import { TEAM } from '../../constants';
 import { ConnectSquare } from '../../types'
 
 const animateDownTraveling = keyframes`
@@ -15,16 +15,13 @@ interface IAnimatedChip {
 export const AnimatedChip = forwardRef<IAnimatedChip, 'div'>(({ square }, ref) => {
   const isOutOfBounds = square.location.includes('x')
 
-  if (square.team && isOutOfBounds) {
+  const CoinIcon = square.team ? TEAM[square.team - 1].CoinIcon : undefined;
+  if (CoinIcon && isOutOfBounds) {
     return (
-      <Box
+      <CoinIcon
         ref={ref}
-        w='full'
-        h='full'
-        rounded='full'
         animation={isOutOfBounds ? animationDownTraveling : undefined}
-        sx={{ ...TEAM_COLORS[square.team - 1] }}
-        boxSize={24}
+        boxSize={32}
         position='absolute'
         left={10}
         right={10}

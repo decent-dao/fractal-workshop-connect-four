@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { ConnectSquare } from '../../types'
 import { Box } from '@chakra-ui/react'
-import { TEAM_COLORS } from '../../constants'
+import { TEAM } from '../../constants'
 import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 import { useStore } from '../../provider/store/StoreProvider'
 import { SeasonAction } from '../../provider/store/season/actions'
@@ -68,13 +68,12 @@ export function SquareCenter({
       }
     }
   }, [animatedChipRef, square, isOutOfBounds, updateBoard])
+  const CoinIcon = square.team ? TEAM[square.team - 1].CoinIcon : undefined;
   return (
     <Box ref={locationRef}>
-      {square.team && !isOutOfBounds && (
-        <Box
+      {!!CoinIcon && !isOutOfBounds && (
+        <CoinIcon
           boxSize={24}
-          rounded='full'
-          {...TEAM_COLORS[square.team - 1]}
         />
       )}
     </Box>
