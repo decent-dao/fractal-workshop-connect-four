@@ -4,7 +4,6 @@ export const defaultNetworkState: NetworkConfig = {
   safeBaseURL: '',
   contractAddresses: {
     connectFourAddress: '',
-    connectFourFactoryAddress: '',
     fractalRegistryAddress: '',
     gnosisSafeAddress: ''
   },

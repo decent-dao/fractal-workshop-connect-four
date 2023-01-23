@@ -24,7 +24,7 @@ import { GameBase } from '../../provider/store/types'
 
 export function ConnectFourGames() {
   const {
-    currentSeason: { gameIds, currentSeasonAddress },
+    currentSeason: { gameIds, connectFourContract },
   } = useStore()
   const copyTextToClipboard = useCopyText()
   return (
@@ -43,9 +43,9 @@ export function ConnectFourGames() {
           cursor='pointer'
           display='flex'
           alignItems='center'
-          onClick={() => copyTextToClipboard(currentSeasonAddress || '')}
+          onClick={() => copyTextToClipboard(connectFourContract?.address)}
         >
-          <Copy /> {currentSeasonAddress}
+          <Copy /> {connectFourContract?.address}
         </Text>
       </Flex>
       <Text textStyle='text-lg-mono-semibold' my={4}>

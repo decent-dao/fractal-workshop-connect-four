@@ -15,16 +15,10 @@ export function useConnectFourSeason({ seasonDispatch }: IUseConnectFourSeason) 
     if (!baseContracts) {
       return;
     }
-    const seasons = await baseContracts.connectFourFactoryBase.getGames()
-    if (!seasons.length) {
-      return;
-    }
-    const currentSeasonAddress = seasons[0]
-    const connectFourContract = baseContracts.connectFourBase.attach(seasons[0])
+    const connectFourContract = baseContracts.connectFourBase
     const currentGameId = await connectFourContract.gameId()
     const gameIds = new Array(currentGameId.toNumber()).fill(undefined).map((_, i) => i);
     return {
-      currentSeasonAddress,
       connectFourContract,
       gameIds
     }
