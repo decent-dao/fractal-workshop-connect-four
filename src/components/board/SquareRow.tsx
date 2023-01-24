@@ -6,9 +6,7 @@ export function SquareRow({ index, children }: { index: number; children: ReactN
   return (
     <Flex
       borderX={index !== 0 ? BOARD_PADDING : undefined}
-      borderColor='blue.500'
-      roundedTop={index === 1 ? 'xl' : undefined}
-      roundedBottom={index === 6 ? 'xl' : undefined}
+      borderColor='blue.400-hover'
     >
       {children}
     </Flex>

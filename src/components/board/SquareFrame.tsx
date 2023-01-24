@@ -9,8 +9,8 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
       id={square.location}
       key={square.location}
       position='relative'
-      border={!isOutOfBounds ? '2px solid' : undefined}
-      borderColor="grayscale.black"
+      border={!isOutOfBounds ? '1px solid' : undefined}
+      borderColor="black.500"
     >
       <Center
         w='7rem'

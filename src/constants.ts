@@ -22,4 +22,4 @@ export const TEAM = [
   }
 ]
 
-export const BOARD_PADDING = '32px solid'
+export const BOARD_PADDING = '20px solid'
