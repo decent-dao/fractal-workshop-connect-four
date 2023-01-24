@@ -23,7 +23,7 @@ export const AnimatedChip = forwardRef<IAnimatedChip, 'div'>(({ square }, ref) =
         animation={isOutOfBounds ? animationDownTraveling : undefined}
         boxSize={24}
         position='absolute'
-        left={8}
+        left={2}
         opacity='0'
         transform='translateY(-150%)'
       />

@@ -73,7 +73,7 @@ export function SquareCenter({
     <Box ref={locationRef}>
       {!!CoinIcon && !isOutOfBounds && (
         <CoinIcon
-          boxSize={28}
+          boxSize={24}
         />
       )}
     </Box>
