@@ -39,7 +39,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
       flexDirection={{ starting: 'row', '3xl': 'column' }}
       alignItems='center'
       pt={{ starting: '20', '3xl': '32' }}
-      px={8}
+      pr={{ starting: '16', '3xl': '0' }}
       justifyContent={{ starting: 'space-between', '3xl': 'flex-start' }}
       w="full"
       h="full"
