@@ -37,14 +37,16 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
   return (
     <Flex
       flexDirection={{ starting: 'row', '3xl': 'column' }}
-      justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
       alignItems='center'
-      pt={{ starting: 10, '3xl': 24 }}
-      gap={4}
+      pt={{ starting: '20', '3xl': '32' }}
+      px={8}
+      justifyContent={{ starting: 'space-between', '3xl': 'flex-start' }}
+      w="full"
+      h="full"
     >
       <Text textStyle='text-4xl-mono-bold'>{displayName}</Text>
       <Coin
-        boxSize={{ starting: 24, '3xl': 32 }}
+        boxSize={{ starting: 16, '3xl': 32 }}
         animation={isCurrentTurn ? rotateAnimation : 'none'}
       />
     </Flex>

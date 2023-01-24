@@ -13,10 +13,10 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
       borderColor="grayscale.black"
     >
       <Center
-        w='8.5rem'
-        h={isOutOfBounds ? '0rem' : '8.5rem'}
+        w='7rem'
+        h={isOutOfBounds ? '0rem' : '7rem'}
         zIndex={0}
-        border={!isOutOfBounds ? '24px solid' : 'none'}
+        border={!isOutOfBounds ? '18px solid' : 'none'}
         borderColor={{ starting: 'gold.500', '3xl': 'gold.500' }}
         sx={{
           '&': {
@@ -33,7 +33,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
             zIndex: 8,
             borderRadius: '100%',
             transform: 'translate(-50%, -50%)',
-            boxShadow: !isOutOfBounds ? '0px 0px 0px 20px #c897251c, 0px 0px 0px 24px #fabd2eff' : undefined
+            boxShadow: !isOutOfBounds ? '0px 0px 0px 18px #fabd2eff' : undefined
           },
         }}>
         {children}

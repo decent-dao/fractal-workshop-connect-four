@@ -25,8 +25,8 @@ export function ConnectFour() {
     <Flex
       justifyContent='center'
       h='full'
-      pt={24}
-      transform={{ starting: 'scale(0.9)', '3xl': 'scale(1)' }}
+      pt={{ starting: '24', '3xl': '0' }}
+      alignItems={{ starting: 'flex-start', '3xl': 'center' }}
     >
       <Box
         position='relative'

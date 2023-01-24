@@ -27,10 +27,10 @@ export function Branding() {
           justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
           gap={{ starting: 0, '3xl': '4' }}
         >
-          <Text textStyle='text-6xl-mono-semibold' color='gold.500'>
+          <Text textStyle={{ starting: 'text-2xl-mono-semibold', '3xl': 'text-6xl-mono-semibold' }} color='gold.500'>
             On - Chain Connect 4
           </Text>
-          <Text textStyle='text-2xl-mono-semibold'>
+          <Text textStyle={{ starting: 'text-base-mono-semibold', '3xl': 'text-2xl-mono-semibold' }}>
             POWERED BY{' '}
             <Link
               href='https://www.decent-dao.org/'
