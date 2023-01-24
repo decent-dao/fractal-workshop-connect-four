@@ -46,7 +46,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
     >
       <Text textStyle='text-4xl-mono-bold'>{displayName}</Text>
       <Coin
-        boxSize={{ starting: 16, '3xl': 32 }}
+        boxSize={{ starting: 20, '3xl': 32 }}
         animation={isCurrentTurn ? rotateAnimation : 'none'}
       />
     </Flex>
