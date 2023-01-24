@@ -1,4 +1,5 @@
 import { Flex, keyframes, Text } from '@chakra-ui/react'
+import { constants } from 'ethers'
 import { useStore } from '../../provider/store/StoreProvider'
 import { TeamOneCoin } from '../icons/TeamOneCoin'
 import { TeamTwoCoin } from '../icons/TeamTwoCoin'
@@ -11,7 +12,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
     return null
   }
 
-  const { teamOne, teamTwo, turn } = currentGame
+  const { teamOne, teamTwo, turn, winner } = currentGame
 
   const { Coin, displayName } =
     teamNum === 1
@@ -26,13 +27,17 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
 
   const currentTeamTurn = turn % 2 == 0 ? 2 : 1
   const isCurrentTurn = currentTeamTurn === teamNum
+  const isGameOver = winner !== constants.AddressZero
+  const isTeamOneWinner = winner === teamOne.full
+  const isTeamTwoWinner = winner === teamTwo.full
 
   const rotateCoin = keyframes`
     0% { transform: rotateY(0deg)}
-    100% { transform: rotateY(360deg)}
+    50% { transform: rotateY(90deg)}
+    100% { transform: rotateY(0deg)}
   `
 
-  const rotateAnimation = `${rotateCoin} ease-out 3s 1s infinite`
+  const rotateAnimation = `${rotateCoin} ease-out 2s 1s infinite`
 
   return (
     <Flex
@@ -47,7 +52,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
       <Text textStyle='text-4xl-mono-bold'>{displayName}</Text>
       <Coin
         boxSize={{ starting: 20, '3xl': 32 }}
-        animation={isCurrentTurn ? rotateAnimation : 'none'}
+        animation={isCurrentTurn && !isGameOver ? rotateAnimation : 'none'}
       />
     </Flex>
   )

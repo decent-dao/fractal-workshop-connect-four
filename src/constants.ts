@@ -21,5 +21,3 @@ export const TEAM = [
     CoinIcon: TeamTwoCoin
   }
 ]
-
-export const BOARD_PADDING = '20px solid'
