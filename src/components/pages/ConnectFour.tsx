@@ -22,14 +22,22 @@ export function ConnectFour() {
   }
 
   return (
-    <Flex justifyContent='center' h='full' pt={24} transform={{ starting: 'scale(0.9)', '3xl': 'scale(1)' }}>
-      <Box position='relative' overflow='hidden' h='fit-content'>
+    <Flex
+      justifyContent='center'
+      h='full'
+      pt={24}
+      transform={{ starting: 'scale(0.9)', '3xl': 'scale(1)' }}
+    >
+      <Box
+        position='relative'
+        overflow='hidden'
+        h='fit-content'
+        boxShadow='1px 1px 3px #fabd2e11, 4px 4px 6px #fabd2e11, 8px 8px 10px #fabd2e11, 16px 16px 18px #fabd2e11'
+        rounded='xl'
+      >
         {currentGame.board.map((row, i) => {
           return (
-            <SquareRow
-              key={i}
-              index={i}
-            >
+            <SquareRow key={i} index={i}>
               {row.map((square) => {
                 return (
                   <SquareFrame key={square.location} square={square}>
