@@ -21,7 +21,7 @@ export const AnimatedChip = forwardRef<IAnimatedChip, 'div'>(({ square }, ref) =
       <CoinIcon
         ref={ref}
         animation={isOutOfBounds ? animationDownTraveling : undefined}
-        boxSize={28}
+        boxSize={24}
         position='absolute'
         left={8}
         opacity='0'
