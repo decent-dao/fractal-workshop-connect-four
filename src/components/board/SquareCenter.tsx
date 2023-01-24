@@ -42,7 +42,7 @@ export function SquareCenter({
       updateBoard();
       clearInterval(intervalId)
     }
-    if (fallingPieceEle && locationEle && !isOutOfBounds) {
+    if (fallingPieceEle && locationEle && animatedChipRef && !isOutOfBounds) {
       fallingPieceEle.addEventListener('animationstart', () => {
         intervalId = setInterval(() => {
           const fallingRect = fallingPieceEle.getBoundingClientRect()
@@ -61,8 +61,8 @@ export function SquareCenter({
             return
           }
         }, 1)
-        fallingPieceEle.addEventListener('animationcancel', animationEndListener)
       })
+      fallingPieceEle.addEventListener('animationcancel', animationEndListener)
       return () => {
         fallingPieceEle.removeEventListener('animationcancel', animationEndListener)
       }
@@ -73,7 +73,7 @@ export function SquareCenter({
     <Box ref={locationRef}>
       {!!CoinIcon && !isOutOfBounds && (
         <CoinIcon
-          boxSize={24}
+          boxSize={28}
         />
       )}
     </Box>
