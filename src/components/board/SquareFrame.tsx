@@ -9,15 +9,16 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
       id={square.location}
       key={square.location}
       position='relative'
-      border={!isOutOfBounds ? '1px solid' : undefined}
-      borderColor="black.500"
+      border='1px solid'
+      borderColor={!isOutOfBounds ? 'black.500' : 'transparent'}
     >
       <Center
         w='7rem'
         h={isOutOfBounds ? '0rem' : '7rem'}
         zIndex={0}
-        border={!isOutOfBounds ? '18px solid' : 'none'}
-        borderColor={{ starting: 'gold.500', '3xl': 'gold.500' }}
+        borderY={!isOutOfBounds ? '18px solid' : undefined}
+        borderX={!isOutOfBounds ? '18px solid' : '18px solid'}
+        borderColor={!isOutOfBounds ? { starting: 'gold.500', '3xl': 'gold.500' } : 'transparent'}
         sx={{
           '&': {
             WebkitMarginStart: '0px !important',

@@ -41,7 +41,8 @@ export function useConnectFourGame({ gameId }: IUseConnectFourGame) {
       const connectBoard: ConnectSquare[][] = typeedBoard.reverse().map((col, column) => col.map((square, row) => {
         if (square === 'x') {
           return {
-            location: `${square}:${row}`
+            location: `${square}:${row}`,
+            team: 1
           }
         }
         if (square === 1 || square === 2) {
