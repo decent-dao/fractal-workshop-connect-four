@@ -22,7 +22,7 @@ export function ConnectFour() {
   }
 
   return (
-    <Flex justifyContent='center' h='full' pt={{ starting: 0, '3xl': 24 }} transform={{ starting: 'scale(0.9)', '3xl': 'scale(1)' }}>
+    <Flex justifyContent='center' h='full' pt={24} transform={{ starting: 'scale(0.9)', '3xl': 'scale(1)' }}>
       <Box position='relative' overflow='hidden' h='fit-content'>
         {currentGame.board.map((row, i) => {
           return (

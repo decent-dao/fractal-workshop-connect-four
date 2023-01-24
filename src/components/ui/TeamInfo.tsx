@@ -40,10 +40,9 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
       justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
       alignItems='center'
       pt={{ starting: 10, '3xl': 24 }}
-      mb={{ starting: 8, '3xl': 0 }}
       gap={4}
     >
-      <Text textStyle='text-5xl-mono-bold'>{displayName}</Text>
+      <Text textStyle='text-4xl-mono-bold'>{displayName}</Text>
       <Coin
         boxSize={{ starting: 24, '3xl': 32 }}
         animation={isCurrentTurn ? rotateAnimation : 'none'}
