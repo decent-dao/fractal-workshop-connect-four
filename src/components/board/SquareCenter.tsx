@@ -3,6 +3,7 @@ import { ConnectSquare } from '../../types'
 import { Flex, keyframes } from '@chakra-ui/react'
 import { TEAM } from '../../constants'
 import { useStore } from '../../provider/store/StoreProvider'
+import { rotateAnimation } from '../../utils/animation'
 
 export function SquareCenter({ square, rowIndex }: { square: ConnectSquare; rowIndex: number }) {
   const animateDownTraveling = keyframes`
@@ -40,7 +41,14 @@ export function SquareCenter({ square, rowIndex }: { square: ConnectSquare; rowI
       position='absolute'
       zIndex={-1}
     >
-      {!!CoinIcon && <CoinIcon id={square.location} boxSize={{ starting: 20, '3xl': 24 }} zIndex={0} />}
+      {!!CoinIcon && (
+        <CoinIcon
+          id={square.location}
+          boxSize={{ starting: 20, '3xl': 24 }}
+          zIndex={0}
+          animation={square.connected ? rotateAnimation : undefined}
+        />
+      )}
     </Flex>
   )
 }

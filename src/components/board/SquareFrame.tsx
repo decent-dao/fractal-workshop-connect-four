@@ -33,7 +33,9 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
             left: '50%',
             borderRadius: '100%',
             transform: 'translate(-50%, -50%)',
-            boxShadow: { starting: '0px 0px 0px 18px #fabd2eff', '3xl': '0px 0px 0px 20px #fabd2eff' },
+            boxShadow: square.connected
+              ? { starting: '0px 0px 0px 18px #4da9ffff', '3xl': '0px 0px 0px 20px #4da9ffff' }
+              : { starting: '0px 0px 0px 18px #fabd2eff', '3xl': '0px 0px 0px 20px #fabd2eff' },
           },
         }}
       >

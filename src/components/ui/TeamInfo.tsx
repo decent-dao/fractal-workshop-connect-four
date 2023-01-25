@@ -1,6 +1,7 @@
-import { Flex, keyframes, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { constants } from 'ethers'
 import { useStore } from '../../provider/store/StoreProvider'
+import { rotateAnimation } from '../../utils/animation'
 import { TeamOneCoin } from '../icons/TeamOneCoin'
 import { TeamTwoCoin } from '../icons/TeamTwoCoin'
 
@@ -31,13 +32,6 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
   // const isTeamOneWinner = winner === teamOne.full
   // const isTeamTwoWinner = winner === teamTwo.full
 
-  const rotateCoin = keyframes`
-    0% { transform: rotateY(0deg)}
-    50% { transform: rotateY(90deg)}
-    100% { transform: rotateY(0deg)}
-  `
-
-  const rotateAnimation = `${rotateCoin} ease-out 2s 1s infinite`
 
   return (
     <Flex

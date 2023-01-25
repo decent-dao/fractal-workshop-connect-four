@@ -10,4 +10,5 @@ export type ConnectSquare = {
     // @note undefined = no piece
     // @note colors = space occupied
     team?: 1 | 2
+    connected?: boolean
 }
