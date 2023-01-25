@@ -1,8 +1,11 @@
-import { Flex, Link, Text } from '@chakra-ui/react'
+import { Flex, IconButton, Link, Text } from '@chakra-ui/react'
 import { FractalBrand } from '@decent-org/fractal-ui'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../../routes/routes'
 import { FractalLogo } from '../icons/FractalLogo'
 
 export function Branding() {
+  const navigate = useNavigate()
   return (
     <Flex
       flexDirection={{ starting: 'row', '3xl': 'column' }}
@@ -19,7 +22,7 @@ export function Branding() {
         gap={{ starting: 0, '3xl': '12' }}
         w='full'
       >
-        <FractalLogo width='12rem' height='auto' />
+        <IconButton aria-label="home" variant="unstyled" icon={<FractalLogo width='12rem' height='auto' />} onClick={() => navigate(ROUTES.base.relative())}/>
         <Flex
           flexDirection='column'
           alignItems={{ starting: 'center', '3xl': 'flex-start' }}
