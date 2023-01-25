@@ -1,6 +1,8 @@
 import {
   Button,
   Flex,
+  Grid,
+  GridItem,
   Link,
   SkeletonText,
   Table,
@@ -21,6 +23,15 @@ import { useCopyText } from '../../hooks/utils/useCopyText'
 import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 import { useStore } from '../../provider/store/StoreProvider'
 import { GameBase } from '../../provider/store/types'
+import { Branding } from '../ui/Branding'
+
+const smallScreen = `
+  "brand"
+  "table"
+`
+const largeScreen = `
+  "brand table"
+`
 
 export function ConnectFourGames() {
   const {
@@ -28,54 +39,68 @@ export function ConnectFourGames() {
   } = useStore()
   const copyTextToClipboard = useCopyText()
   return (
-    <TableContainer maxW='6xl' mx='auto'>
-      <Flex gap={2} alignItems='center'>
-        <Text textStyle='text-base-mono-medium'>Current Season Address:</Text>
-        <Text
-          textStyle='text-base-mono-bold'
-          color='grayscale.white'
-          bg='black.900'
-          px={4}
-          py={2}
-          rounded='md'
-          gap='4'
-          letterSpacing='0.125rem'
-          cursor='pointer'
-          display='flex'
-          alignItems='center'
-          onClick={() => copyTextToClipboard(connectFourContract?.address)}
-        >
-          <Copy /> {connectFourContract?.address}
-        </Text>
-      </Flex>
-      <Text textStyle='text-lg-mono-semibold' my={4}>
-        For Instructions on how to start a game and play see
-        <Link
-          ml={2}
-          color='blue.400'
-          href='https://github.com/curiousity-labs/fractal-workshop-connect-four'
-        >
-          README
-        </Link>
-      </Text>
-      <Table variant='striped'>
-        <Thead textStyle='text-base-mono-bold'>
-          <Tr>
-            <Th>Game Id</Th>
-            <Th>Team One</Th>
-            <Th>Team Two</Th>
-            <Th>game Status</Th>
-            <Th isNumeric>current Turn</Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
-        <Tbody textStyle='text-lg-sans-regular'>
-          {gameIds.map((gameId) => (
-            <TableBodyRow key={gameId} gameId={gameId} />
-          ))}
-        </Tbody>
-      </Table>
-    </TableContainer>
+    <Grid
+      gridTemplateAreas={{ starting: smallScreen, '3xl': largeScreen }}
+      templateColumns={{
+        starting: 'minmax(1fr, 72rem)',
+        '3xl': 'minmax(300px, 412px) 1fr',
+      }}
+      templateRows={{ starting: '5rem 10rem 1fr', '3xl': 'calc(100vh)' }}
+    >
+      <GridItem area='brand' bg='black.900-semi-transparent'>
+        <Branding />
+      </GridItem>
+      <GridItem area='table'>
+        <TableContainer m={8}>
+          <Flex gap={2} alignItems='center'>
+            <Text textStyle='text-base-mono-medium'>Current Season Address:</Text>
+            <Text
+              textStyle='text-base-mono-bold'
+              color='grayscale.white'
+              bg='black.900'
+              px={4}
+              py={2}
+              rounded='md'
+              gap='4'
+              letterSpacing='0.125rem'
+              cursor='pointer'
+              display='flex'
+              alignItems='center'
+              onClick={() => copyTextToClipboard(connectFourContract?.address)}
+            >
+              <Copy /> {connectFourContract?.address}
+            </Text>
+          </Flex>
+          <Text textStyle='text-lg-mono-semibold' my={4}>
+            For Instructions on how to start a game and play see
+            <Link
+              ml={2}
+              color='blue.400'
+              href='https://github.com/curiousity-labs/fractal-workshop-connect-four'
+            >
+              README
+            </Link>
+          </Text>
+          <Table variant='striped'>
+            <Thead textStyle='text-base-mono-bold'>
+              <Tr>
+                <Th>Game Id</Th>
+                <Th>Team One</Th>
+                <Th>Team Two</Th>
+                <Th>game Status</Th>
+                <Th isNumeric>current Turn</Th>
+                <Th></Th>
+              </Tr>
+            </Thead>
+            <Tbody textStyle='text-lg-sans-regular'>
+              {gameIds.map((gameId) => (
+                <TableBodyRow key={gameId} gameId={gameId} />
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </GridItem>
+    </Grid>
   )
 }
 
@@ -107,7 +132,7 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
       <Td>{game.gameId}</Td>
       <Td>
         <SkeletonText isLoaded={!!game.teamOne.displayName} startColor='grayscale.200'>
-          <Link href={game.teamOne.addressURL!} rel="nooppener noreferer" target="_blank">
+          <Link href={game.teamOne.addressURL!} rel='nooppener noreferer' target='_blank'>
             <Flex
               alignItems='center'
               gap={4}
@@ -122,7 +147,7 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
 
       <Td>
         <SkeletonText isLoaded={!!game.teamTwo.displayName} startColor='grayscale.200'>
-          <Link href={game.teamTwo.addressURL!} rel="nooppener noreferer" target="_blank">
+          <Link href={game.teamTwo.addressURL!} rel='nooppener noreferer' target='_blank'>
             <Flex
               alignItems='center'
               gap={4}

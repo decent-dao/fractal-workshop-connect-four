@@ -16,7 +16,7 @@ export function ConnectFourGame() {
   return (
     <Grid
       gridTemplateAreas={{ starting: smallScreen, '3xl': largeScreen }}
-      rowGap={{ starting: 0, '3xl': 0 }}
+      rowGap={0}
       templateColumns={{
         starting: 'repeact(2, 1fr)',
         '3xl': 'minmax(300px, 412px) minmax(200px, 412px) 1fr minmax(200px, 412px)',
