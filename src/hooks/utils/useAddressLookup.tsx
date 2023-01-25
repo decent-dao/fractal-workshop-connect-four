@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useReducer } from 'react'
+import { useCallback, useEffect, useReducer } from 'react'
 import { useProvider } from 'wagmi'
 import { addressSubString } from '../../utils/string'
 import { isAddress } from 'ethers/lib/utils.js'
@@ -61,11 +61,6 @@ export const useAddressLookup = (address?: string) => {
   const provider = useProvider()
   const { baseContracts } = useWeb3NetworkConfig()
 
-  const displayName = useMemo(() => {
-    const { truncated, ensName, registryDAOName } = addressInfo
-    return ensName || registryDAOName || truncated || ''
-  }, [addressInfo])
-
   const lookupAddress = useCallback(
     async (_address?: string) => {
       if (!_address || !isAddress(_address) || !baseContracts) {
@@ -86,7 +81,6 @@ export const useAddressLookup = (address?: string) => {
       const registryDAOName = registryDAONameEvent[0] ? registryDAONameEvent[0].args[1] : null
       const isSafe = !!contractGetCall
       const truncated = addressSubString(_address)
-      const displayName = ensName || registryDAOName || truncated
 
       const addressType = registryDAOName ? 'fractal' : isSafe ? 'gnosis' : 'etherscan'
       const addressInfo = {
@@ -94,8 +88,8 @@ export const useAddressLookup = (address?: string) => {
         ensName,
         registryDAOName,
         truncated,
+        get displayName() { return this.ensName || this.registryDAOName || this.truncated},
         isSafe,
-        displayName,
         addressURL: getAddressURL(_address, addressType)
       }
       return addressInfo
@@ -119,5 +113,5 @@ export const useAddressLookup = (address?: string) => {
     }
   }, [storeAddressInfo, address])
 
-  return { addressInfo, displayName, lookupAddress }
+  return { addressInfo, lookupAddress }
 }
