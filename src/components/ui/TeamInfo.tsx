@@ -37,7 +37,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
     <Flex
       flexDirection={{ starting: 'row', '3xl': 'column' }}
       alignItems={{ starting: 'center', '3xl': 'center' }}
-      pt={{ starting: 0, '3xl': 32 }}
+      pt={{ starting: 8, '3xl': 32 }}
       pr={{ starting: 0, '3xl': 0 }}
       justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
       w="full"
