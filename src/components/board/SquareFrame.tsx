@@ -12,7 +12,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
       borderColor='black.500'
     >
       <Box
-        boxSize='8rem'
+        boxSize={{ starting: '7rem', '3xl': '8rem' }}
         sx={{
           '&': {
             WebkitMarginStart: '0px !important',
@@ -21,8 +21,8 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
           '&:before': {
             content: '""',
             boxSize: '100%',
-            border: '20px solid',
-            borderColor: 'gold.500',
+            border: { starting: '18px solid', '3xl': '20px solid' },
+            borderColor: { starting: 'gold.500', '3xl': 'gold.500' },
             position: 'absolute',
           },
           '&:after': {
@@ -33,7 +33,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
             left: '50%',
             borderRadius: '100%',
             transform: 'translate(-50%, -50%)',
-            boxShadow: '0px 0px 0px 20px #fabd2eff',
+            boxShadow: { starting: '0px 0px 0px 18px #fabd2eff', '3xl': '0px 0px 0px 20px #fabd2eff' },
           },
         }}
       >

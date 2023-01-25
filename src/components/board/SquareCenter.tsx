@@ -40,7 +40,7 @@ export function SquareCenter({ square, rowIndex }: { square: ConnectSquare; rowI
       position='absolute'
       zIndex={-1}
     >
-      {!!CoinIcon && <CoinIcon id={square.location} boxSize={24} zIndex={0} />}
+      {!!CoinIcon && <CoinIcon id={square.location} boxSize={{ starting: 20, '3xl': 24 }} zIndex={0} />}
     </Flex>
   )
 }
