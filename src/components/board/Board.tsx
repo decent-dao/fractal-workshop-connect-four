@@ -44,8 +44,8 @@ export function Board() {
     <Flex
       justifyContent='center'
       h='full'
-      pt={{ starting: '20', '3xl': '0' }}
-      alignItems={{ starting: 'flex-start', '3xl': 'center' }}
+      pt={{ starting: '20', '3xl': '36' }}
+      alignItems='flex-start'
     >
       <Box
         h='fit-content'
