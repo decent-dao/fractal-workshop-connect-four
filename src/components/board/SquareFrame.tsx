@@ -22,7 +22,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
             content: '""',
             boxSize: '100%',
             border: { starting: '16px solid', '3xl': '20px solid' },
-            borderColor: { starting: 'gold.500', '3xl': 'gold.500' },
+            borderColor: square.connected ? { starting: 'gold.500-active', '3xl': 'gold.500' } : { starting: 'gold.500', '3xl': 'gold.500' },
             position: 'absolute',
           },
           '&:after': {
@@ -33,9 +33,7 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
             left: '50%',
             borderRadius: '100%',
             transform: 'translate(-50%, -50%)',
-            boxShadow: square.connected
-              ? { starting: '0px 0px 0px 17px #4da9ffff', '3xl': '0px 0px 0px 20px #4da9ffff' }
-              : { starting: '0px 0px 0px 17px #fabd2eff', '3xl': '0px 0px 0px 19px #fabd2eff' },
+            boxShadow:  { starting: '0px 0px 0px 17px #fabd2eff', '3xl': '0px 0px 0px 20px #fabd2eff' }
           },
         }}
       >

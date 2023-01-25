@@ -16,18 +16,18 @@ export function ConnectFourGame() {
   return (
     <Grid
       gridTemplateAreas={{ starting: smallScreen, '3xl': largeScreen }}
-      rowGap={{ starting: 8, '3xl': 0 }}
+      rowGap={{ starting: 0, '3xl': 0 }}
       templateColumns={{
         starting: 'repeact(2, 1fr)',
         '3xl': 'minmax(300px, 412px) minmax(200px, 412px) 1fr minmax(200px, 412px)',
       }}
-      templateRows={{ starting: '5rem 2rem 1fr', '3xl': 'calc(100vh)' }}
+      templateRows={{ starting: '5rem 10rem 1fr', '3xl': 'calc(100vh)' }}
     >
       <GridItem area='brand' bg='black.900-semi-transparent'>
         <Branding />
       </GridItem>
       <GridItem area='tOne'>
-        <TeamInfo teamNum={1} />
+        <TeamInfo teamNum={1}/>
       </GridItem>
       <GridItem area='board'>
         <Board />
