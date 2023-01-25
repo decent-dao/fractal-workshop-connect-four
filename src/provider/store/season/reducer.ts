@@ -1,3 +1,4 @@
+import { ConnectSquare } from './../../../types';
 import { seasonInitialState } from './../constants'
 import { SeasonAction, SeasonActions } from './actions'
 import { Season } from './../types'
@@ -39,13 +40,14 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
       const lastRow: number = [...board]
         .reverse()
         .reduce((prev, cur, i) => (cur[column].team ? i + 1 : prev), 0)
+
       const lastTurnData = {
         lastColumn: column,
         lastRow: lastRow,
         teamNum,
       }
 
-      const newBoard = board.map((row) =>
+      const newBoard: ConnectSquare[][] = board.map((row) =>
         row.map((square) => {
           if (square.location === `${lastRow}:${column}`) {
             return {
@@ -53,7 +55,7 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
               team: teamNum,
             }
           }
-          return square
+          return {...square}
         }),
       )
 
