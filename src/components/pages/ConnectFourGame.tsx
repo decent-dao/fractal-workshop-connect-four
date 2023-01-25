@@ -9,9 +9,8 @@ export function ConnectFourGame() {
 `
   const smallScreen = `
     "brand brand"
-    "board empty"
-    "board tOne"
-    "board tTwo"
+    "tOne tTwo"
+    "board board"
   `
 
   return (
@@ -22,7 +21,7 @@ export function ConnectFourGame() {
         starting: 'repeact(2, 1fr)',
         '3xl': 'minmax(300px, 412px) minmax(200px, 412px) 1fr minmax(200px, 412px)',
       }}
-      templateRows={{ starting: '5rem 4rem repeat(2, 1fr)', '3xl': 'calc(100vh)' }}
+      templateRows={{ starting: '5rem 2rem 1fr', '3xl': 'calc(100vh)' }}
     >
       <GridItem area='brand' bg='black.900-semi-transparent'>
         <Branding />
