@@ -44,7 +44,7 @@ export function SquareCenter({ square, rowIndex }: { square: ConnectSquare; rowI
       {!!CoinIcon && (
         <CoinIcon
           id={square.location}
-          boxSize={{ starting: 16, '3xl': 24 }}
+          boxSize={{ starting: 16, '3xl': '24' }}
           zIndex={0}
           animation={square.connected ? rotateAnimation : undefined}
         />
