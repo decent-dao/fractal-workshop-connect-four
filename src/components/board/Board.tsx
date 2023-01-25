@@ -1,11 +1,11 @@
 import { Flex, Box } from '@chakra-ui/react'
-import { SquareFrame } from '../board/SquareFrame'
-import { SquareCenter } from '../board/SquareCenter'
+import { SquareFrame } from './SquareFrame'
+import { SquareCenter } from './SquareCenter'
 import { useStore } from '../../provider/store/StoreProvider'
 import { useParams } from 'react-router-dom'
 import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 
-export function ConnectFour() {
+export function Board() {
   const {
     currentSeason: { currentGame },
   } = useStore()

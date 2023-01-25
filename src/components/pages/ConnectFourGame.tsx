@@ -1,7 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { Branding } from '../ui/Branding'
 import { TeamInfo } from '../ui/TeamInfo'
-import { ConnectFour } from './ConnectFour'
+import { Board } from '../board/Board'
 
 export function ConnectFourGame() {
   const largeScreen = `
@@ -31,7 +31,7 @@ export function ConnectFourGame() {
         <TeamInfo teamNum={1} />
       </GridItem>
       <GridItem area='board'>
-        <ConnectFour />
+        <Board />
       </GridItem>
       <GridItem area='tTwo'>
         <TeamInfo teamNum={2} />
