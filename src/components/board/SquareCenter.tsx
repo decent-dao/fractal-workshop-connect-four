@@ -1,81 +1,46 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { ConnectSquare } from '../../types'
-import { Box } from '@chakra-ui/react'
+import { Flex, keyframes } from '@chakra-ui/react'
 import { TEAM } from '../../constants'
-import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 import { useStore } from '../../provider/store/StoreProvider'
-import { SeasonAction } from '../../provider/store/season/actions'
 
-export function SquareCenter({
-  square,
-  animatedChipRef,
-}: {
-  square: ConnectSquare
-  animatedChipRef: React.RefObject<HTMLDivElement>
-}) {
-  const locationRef = useRef<HTMLDivElement>(null)
-  const isOutOfBounds = square.location.includes('x')
+export function SquareCenter({ square, rowIndex }: { square: ConnectSquare; rowIndex: number }) {
+  const animateDownTraveling = keyframes`
+    0%   { opacity: 100%; transform: translateY(-${800 - (rowIndex || 1 * 100)}%) }
+    100% { opacity: 100%;  transform: translateY(0%) }
+`
+  const animationDownTraveling = `${animateDownTraveling} ${2 + (rowIndex || 1)}s ease-out 1`
 
-  const { getBoardData } = useConnectFourGame({})
-  const { currentSeason: { currentGame }, dispatch } = useStore()
+  const animatedChipRef = useRef<HTMLDivElement>(null)
+  const {
+    currentSeason: { currentGame },
+  } = useStore()
 
-  const updateBoard = useCallback(async () => {
+  const shouldRunAnimation = useMemo(() => {
     if (!currentGame) {
-      return;
+      return false
     }
-    const board = await getBoardData(currentGame.gameId);
-    if(!board) {
-      // @todo if this for some reason fails, would need to refresh. possibly add a retry here.
-      return;
+    const { lastTurnData } = currentGame
+    if (!lastTurnData) {
+      return false
     }
-    dispatch({
-      type: SeasonAction.UPDATE_MOVE_FINISHED,
-      payload: { board }
-    })
-  }, [currentGame, dispatch, getBoardData])
+    const { lastColumn, lastRow } = lastTurnData
+    return square.location === `${lastRow}:${lastColumn}`
+  }, [currentGame, square])
 
-  useEffect(() => {
-    const fallingPieceEle = animatedChipRef.current
-    const locationEle = locationRef.current
-    let intervalId: NodeJS.Timer
-    const animationEndListener = () => {
-      updateBoard();
-      clearInterval(intervalId)
-    }
-    if (fallingPieceEle && locationEle && animatedChipRef && !isOutOfBounds) {
-      fallingPieceEle.addEventListener('animationstart', () => {
-        intervalId = setInterval(() => {
-          const fallingRect = fallingPieceEle.getBoundingClientRect()
-          const locationRect = locationEle.getBoundingClientRect()
-          const fallingRectbottom = Math.round(fallingRect.bottom)
-          const lrt = locationRect.top
-          const lrb = locationRect.top + 96
-          if (square.team) {
-            if ((fallingRectbottom >= lrt && fallingRectbottom <= lrb) || fallingRectbottom === 0) {
-              const animations = animatedChipRef.current?.getAnimations()
-              if(animations) {
-                animations[0].cancel()
-              }
-              clearInterval(intervalId)
-            }
-            return
-          }
-        }, 1)
-      })
-      fallingPieceEle.addEventListener('animationcancel', animationEndListener)
-      return () => {
-        fallingPieceEle.removeEventListener('animationcancel', animationEndListener)
-      }
-    }
-  }, [animatedChipRef, square, isOutOfBounds, updateBoard])
-  const CoinIcon = square.team ? TEAM[square.team - 1].CoinIcon : undefined;
+  const CoinIcon = square.team ? TEAM[square.team - 1].CoinIcon : undefined
   return (
-    <Box ref={locationRef}>
-      {!!CoinIcon && !isOutOfBounds && (
-        <CoinIcon
-          boxSize={24}
-        />
-      )}
-    </Box>
+    <Flex
+      justifyContent='center'
+      pl={4}
+      pt={4}
+      ref={animatedChipRef}
+      animation={shouldRunAnimation ? animationDownTraveling : undefined}
+      transform='translateY(0)'
+      position='absolute'
+      zIndex={-1}
+    >
+      {!!CoinIcon && <CoinIcon id={square.location} boxSize={24} zIndex={0} />}
+    </Flex>
   )
 }

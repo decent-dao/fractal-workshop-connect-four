@@ -22,7 +22,12 @@ export interface Game {
   turn: number
   winner: string
   board: ConnectSquare[][]
+  lastTurnData?: {
+    lastColumn: number,
+    teamNum: number
+    lastRow: number,
+  }
 }
 
-export type GameBaseData = Omit<Game, 'states'>
-export type GameBase = Omit<Game, 'states' | 'board'>
+export type GameBaseData = Game;
+export type GameBase = Omit<GameBaseData, 'board'>

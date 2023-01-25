@@ -22,7 +22,7 @@
     "@emotion/styled": "^11.10.5",
     "@fractal-framework/fractal-contracts": "^0.1.14",
     "@tanstack/query-core": "^4.22.0",
-    "b3-curious-contracts": "^0.1.7",
+    "b3-curious-contracts": "^0.1.8",
     "crypto-js": "^4.1.1",
     "ethers": "^5.7.2",
     "framer-motion": "^8.4.3",

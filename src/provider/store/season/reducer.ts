@@ -1,6 +1,6 @@
-import { seasonInitialState } from './../constants';
-import { SeasonAction, SeasonActions } from './actions';
-import { Season } from './../types';
+import { seasonInitialState } from './../constants'
+import { SeasonAction, SeasonActions } from './actions'
+import { Season } from './../types'
 
 export const seasonReducer = (state: Season, action: SeasonActions) => {
   switch (action.type) {
@@ -13,46 +13,73 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
       return { ...state, gameIds }
     }
     case SeasonAction.SET_GAME: {
-      return { ...state, currentGame: { ...action.payload } };
+      const { turn, board, lastTurnData } = action.payload
+      let lastRow = 0
+      if (lastTurnData && turn > 0) {
+        lastRow = [...board]
+          .reverse()
+          .reduce((prev, cur, i) => (cur[lastTurnData.lastColumn].team ? i : prev), 0)
+      }
+      return {
+        ...state,
+        currentGame: {
+          ...action.payload,
+          lastTurnData: lastTurnData ? { ...lastTurnData, lastRow } : undefined,
+        },
+      }
     }
     case SeasonAction.UPDATE_TURN: {
       const { gameId, column, teamAddress } = action.payload
       if (!state.currentGame || gameId !== state.currentGame.gameId) {
-        // @todo find game in games array and update
-        return state;
+        return state
       }
-      const { teamOne, board } = state.currentGame    
-      // otherwise update current game
-      const teamNumber = teamAddress === teamOne.full ? 1 : 2
+      const { teamOne, board } = state.currentGame
+      const teamNum = teamAddress === teamOne.full ? 1 : 2
 
-      // temporary update board with chip on outofbounds row
-      const tempBoard = [...board]
-      tempBoard[0][column] = {
-        ...tempBoard[0][column],
-        team: teamNumber
-      };
-
-      return { ...state, currentGame: { ...state.currentGame, turn: state.currentGame.turn + 1, board: tempBoard } };
-    }
-    case SeasonAction.UPDATE_MOVE_FINISHED: {
-      if (!state.currentGame) {
-        // for typescript, logic should never hit here
-        return state;
+      const lastRow: number = [...board]
+        .reverse()
+        .reduce((prev, cur, i) => (cur[column].team ? i + 1 : prev), 0)
+      const lastTurnData = {
+        lastColumn: column,
+        lastRow: lastRow,
+        teamNum,
       }
 
-      return { ...state, currentGame: { ...state.currentGame, board: action.payload.board, temp: undefined } };
+      const newBoard = board.map((row) =>
+        row.map((square) => {
+          if (square.location === `${lastRow}:${column}`) {
+            return {
+              ...square,
+              team: teamNum,
+            }
+          }
+          return square
+        }),
+      )
+
+      return {
+        ...state,
+        currentGame: {
+          ...state.currentGame,
+          turn: state.currentGame.turn + 1,
+          board: newBoard,
+          lastTurnData,
+        },
+      }
     }
     case SeasonAction.UPDATE_WINNER: {
       const { gameId } = action.payload
       if (!state.currentGame || gameId !== state.currentGame.gameId) {
-        // @todo find game in games array and update
-        return state;
+        return state
       }
-      return {...state, currentGame: {...state.currentGame, winner: action.payload.winningAddress}};
+      return {
+        ...state,
+        currentGame: { ...state.currentGame, winner: action.payload.winningAddress },
+      }
     }
     case SeasonAction.GAME_RESET:
       return seasonInitialState
     default:
-      return state;
+      return state
   }
 }
