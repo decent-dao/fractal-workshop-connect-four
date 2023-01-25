@@ -28,8 +28,8 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
   const currentTeamTurn = turn % 2 == 0 ? 2 : 1
   const isCurrentTurn = currentTeamTurn === teamNum
   const isGameOver = winner !== constants.AddressZero
-  const isTeamOneWinner = winner === teamOne.full
-  const isTeamTwoWinner = winner === teamTwo.full
+  // const isTeamOneWinner = winner === teamOne.full
+  // const isTeamTwoWinner = winner === teamTwo.full
 
   const rotateCoin = keyframes`
     0% { transform: rotateY(0deg)}
