@@ -48,7 +48,6 @@ export function Board() {
       alignItems={{ starting: 'flex-start', '3xl': 'center' }}
     >
       <Box
-        overflow='hidden'
         h='fit-content'
         boxShadow='1px 1px 3px #fabd2e11, 4px 4px 6px #fabd2e11, 8px 8px 10px #fabd2e11, 16px 16px 18px #fabd2e11'
         rounded='md'
