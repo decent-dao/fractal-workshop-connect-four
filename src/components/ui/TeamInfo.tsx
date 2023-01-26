@@ -2,6 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import { constants } from 'ethers'
 import { useStore } from '../../provider/store/StoreProvider'
 import { rotateAnimation } from '../../utils/animation'
+import { Star } from '../icons/Star'
 import { TeamOneCoin } from '../icons/TeamOneCoin'
 import { TeamTwoCoin } from '../icons/TeamTwoCoin'
 
@@ -57,11 +58,13 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
           />
         </Flex>
         {winningTeamNum === teamNum && (
-          <Box pb={4} textAlign='center'>
+          <Flex pb={4} alignItems="center" justifyContent="center" gap={8}>
+            <Star boxSize={10} />
             <Text textStyle='text-6xl-mono-bold' color='grayscale.black'>
               Winner!
             </Text>
-          </Box>
+            <Star boxSize={10} />
+          </Flex>
         )}
       </Box>
     </Box>
