@@ -71,30 +71,30 @@ export function ConnectFourGames() {
           </Alert>
 
           <Flex
+            alignItems='center'
+            bg='black.900-semi-transparent'
             flexDirection='column'
             gap={2}
-            alignItems='center'
             mb={4}
-            bg='black.900-semi-transparent'
             p={4}
             rounded='lg'
           >
             <Text textStyle='text-lg-mono-bold'>Current Game Address:</Text>
             <Text
-              textStyle='text-base-mono-bold'
-              color='gold.500'
+              alignItems='center'
               bg='black.900-semi-transparent'
+              border='1px solid'
+              borderColor='gold.500'
+              color='gold.500'
+              cursor='pointer'
+              display='flex'
+              letterSpacing='0.125rem'
+              gap='4'
+              onClick={() => copyTextToClipboard(connectFourContract?.address)}
               px={4}
               py={2}
               rounded='lg'
-              border='1px solid'
-              borderColor='gold.500'
-              gap='4'
-              letterSpacing='0.125rem'
-              cursor='pointer'
-              display='flex'
-              alignItems='center'
-              onClick={() => copyTextToClipboard(connectFourContract?.address)}
+              textStyle='text-base-mono-bold'
             >
               <Copy /> {connectFourContract?.address}
             </Text>
@@ -154,8 +154,8 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
           <Link href={game.teamOne.addressURL!} rel='nooppener noreferer' target='_blank'>
             <Flex
               alignItems='center'
-              gap={4}
               color={!isGameOver ? undefined : isTeamOneWinner ? 'green.500' : 'alert-red.normal'}
+              gap={4}
             >
               <Text>{game.teamOne.displayName}</Text>
               {!isGameOver ? null : isTeamOneWinner ? <Check /> : <CloseX />}
@@ -169,8 +169,8 @@ export function TableBodyRow({ gameId }: { gameId: number }) {
           <Link href={game.teamTwo.addressURL!} rel='nooppener noreferer' target='_blank'>
             <Flex
               alignItems='center'
-              gap={4}
               color={!isGameOver ? undefined : isTeamTwoWinner ? 'green.500' : 'alert-red.normal'}
+              gap={4}
             >
               <Text>{game.teamTwo.displayName}</Text>
               {!isGameOver ? null : isTeamTwoWinner ? <Check /> : <CloseX />}

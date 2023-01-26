@@ -8,32 +8,42 @@ export function Branding() {
   const navigate = useNavigate()
   return (
     <Flex
-      flexDirection={{ starting: 'row', '3xl': 'column' }}
       alignItems={{ starting: 'center', '3xl': 'flex-start' }}
-      justifyContent='space-between'
+      flexDirection={{ starting: 'row', '3xl': 'column' }}
       h='full'
+      justifyContent='space-between'
       px={12}
       pt={{ starting: 0, '3xl': 28 }}
       pb={{ starting: 0, '3xl': 12 }}
     >
       <Flex
-        flexDirection={{ starting: 'row', '3xl': 'column' }}
         alignItems={{ starting: 'center', '3xl': 'flex-start' }}
+        flexDirection={{ starting: 'row', '3xl': 'column' }}
         gap={{ starting: 0, '3xl': '12' }}
         w='full'
       >
-        <IconButton aria-label="home" variant="unstyled" icon={<FractalLogo width='12rem' height='auto' />} onClick={() => navigate(ROUTES.base.relative())} />
+        <IconButton
+          aria-label='home'
+          icon={<FractalLogo width='12rem' height='auto' />}
+          onClick={() => navigate(ROUTES.base.relative())}
+          variant='unstyled'
+        />
         <Flex
-          flexDirection='column'
           alignItems={{ starting: 'center', '3xl': 'flex-start' }}
-          w='full'
-          justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
+          flexDirection='column'
           gap={{ starting: 0, '3xl': '4' }}
+          justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
+          w='full'
         >
-          <Text textStyle={{ starting: 'text-2xl-mono-semibold', '3xl': 'text-6xl-mono-semibold' }} color='gold.500'>
+          <Text
+            color='gold.500'
+            textStyle={{ starting: 'text-2xl-mono-semibold', '3xl': 'text-6xl-mono-semibold' }}
+          >
             On - Chain Connect 4
           </Text>
-          <Text textStyle={{ starting: 'text-base-mono-semibold', '3xl': 'text-2xl-mono-semibold' }}>
+          <Text
+            textStyle={{ starting: 'text-base-mono-semibold', '3xl': 'text-2xl-mono-semibold' }}
+          >
             POWERED BY{' '}
             <Link
               href='https://www.decent-dao.org/'
@@ -47,11 +57,15 @@ export function Branding() {
         </Flex>
       </Flex>
       <Flex
-        width={{ starting: '12rem', '3xl': 'auto' }}
         justifyContent={{ starting: 'flex-end', '3xl': 'flex-start' }}
+        width={{ starting: '12rem', '3xl': 'auto' }}
       >
-        <Link href="https://www.fractalframework.xyz/" target="_blank" rel="noopener noreferer">
-          <IconButton aria-label="home" variant="unstyled" icon={<FractalBrand boxSize={{ starting: '24', '3xl': '32' }} />} />
+        <Link href='https://www.fractalframework.xyz/' target='_blank' rel='noopener noreferer'>
+          <IconButton
+            aria-label='home'
+            icon={<FractalBrand boxSize={{ starting: '24', '3xl': '32' }} />}
+            variant='unstyled'
+          />
         </Link>
       </Flex>
     </Flex>

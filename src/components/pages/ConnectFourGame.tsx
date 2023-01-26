@@ -27,7 +27,7 @@ export function ConnectFourGame() {
         <Branding />
       </GridItem>
       <GridItem area='tOne'>
-        <TeamInfo teamNum={1}/>
+        <TeamInfo teamNum={1} />
       </GridItem>
       <GridItem area='board'>
         <Board />
