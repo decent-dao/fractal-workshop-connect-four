@@ -22,7 +22,7 @@ export function Branding() {
         gap={{ starting: 0, '3xl': '12' }}
         w='full'
       >
-        <IconButton aria-label="home" variant="unstyled" icon={<FractalLogo width='12rem' height='auto' />} onClick={() => navigate(ROUTES.base.relative())}/>
+        <IconButton aria-label="home" variant="unstyled" icon={<FractalLogo width='12rem' height='auto' />} onClick={() => navigate(ROUTES.base.relative())} />
         <Flex
           flexDirection='column'
           alignItems={{ starting: 'center', '3xl': 'flex-start' }}
@@ -50,7 +50,9 @@ export function Branding() {
         width={{ starting: '12rem', '3xl': 'auto' }}
         justifyContent={{ starting: 'flex-end', '3xl': 'flex-start' }}
       >
-        <FractalBrand boxSize={{ starting: '24', '3xl': '32' }} />
+        <Link href="https://www.fractalframework.xyz/" target="_blank" rel="noopener noreferer">
+          <IconButton aria-label="home" variant="unstyled" icon={<FractalBrand boxSize={{ starting: '24', '3xl': '32' }} />} />
+        </Link>
       </Flex>
     </Flex>
   )
