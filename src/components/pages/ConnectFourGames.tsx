@@ -53,7 +53,7 @@ export function ConnectFourGames() {
       <GridItem area='table'>
         <TableContainer m={8}>
           <Flex gap={2} alignItems='center'>
-            <Text textStyle='text-base-mono-medium'>Current Season Address:</Text>
+            <Text textStyle='text-base-mono-medium'>Current Game Address:</Text>
             <Text
               textStyle='text-base-mono-bold'
               color='grayscale.white'
