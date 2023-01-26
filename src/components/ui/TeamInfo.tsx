@@ -59,11 +59,11 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
         </Flex>
         {winningTeamNum === teamNum && (
           <Flex pb={4} alignItems="center" justifyContent="center" gap={8}>
-            <Star boxSize={10} />
-            <Text textStyle='text-6xl-mono-bold' color='grayscale.black'>
+            <Star boxSize={{starting: 8, '3xl': 10}} />
+            <Text textStyle={{starting: 'text-2xl-mono-bold', '3xl': 'text-6xl-mono-bold'}} color='grayscale.black'>
               Winner!
             </Text>
-            <Star boxSize={10} />
+            <Star boxSize={{starting: 8, '3xl': 10}} />
           </Flex>
         )}
       </Box>
