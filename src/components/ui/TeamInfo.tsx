@@ -50,7 +50,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
           </Text>
           <Coin
             animation={
-              (isCurrentTurn && !isGameOver) || winningTeamNum === teamNum
+              isCurrentTurn || (!isGameOver && winningTeamNum === teamNum)
                 ? rotateAnimation
                 : 'none'
             }
