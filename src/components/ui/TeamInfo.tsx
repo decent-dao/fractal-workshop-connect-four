@@ -19,13 +19,13 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
   const { Coin, displayName } =
     teamNum === 1
       ? {
-        Coin: TeamOneCoin,
-        displayName: teamOne.displayName,
-      }
+          Coin: TeamOneCoin,
+          displayName: teamOne.displayName,
+        }
       : {
-        Coin: TeamTwoCoin,
-        displayName: teamTwo.displayName,
-      }
+          Coin: TeamTwoCoin,
+          displayName: teamTwo.displayName,
+        }
 
   const currentTeamTurn = turn % 2 == 0 ? 2 : 1
   const isCurrentTurn = currentTeamTurn === teamNum
@@ -50,7 +50,9 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
           </Text>
           <Coin
             animation={
-              isCurrentTurn || (isGameOver && winningTeamNum === teamNum)
+              isCurrentTurn && !isGameOver
+                ? rotateAnimation
+                : isGameOver && winningTeamNum === teamNum
                 ? rotateAnimation
                 : 'none'
             }
@@ -58,12 +60,15 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
           />
         </Flex>
         {winningTeamNum === teamNum && (
-          <Flex pb={4} alignItems="center" justifyContent="center" gap={8}>
-            <Star boxSize={{starting: 8, '3xl': 10}} />
-            <Text textStyle={{starting: 'text-2xl-mono-bold', '3xl': 'text-6xl-mono-bold'}} color='grayscale.black'>
+          <Flex pb={4} alignItems='center' justifyContent='center' gap={8}>
+            <Star boxSize={{ starting: 8, '3xl': 10 }} />
+            <Text
+              textStyle={{ starting: 'text-2xl-mono-bold', '3xl': 'text-6xl-mono-bold' }}
+              color='grayscale.black'
+            >
               Winner!
             </Text>
-            <Star boxSize={{starting: 8, '3xl': 10}} />
+            <Star boxSize={{ starting: 8, '3xl': 10 }} />
           </Flex>
         )}
       </Box>

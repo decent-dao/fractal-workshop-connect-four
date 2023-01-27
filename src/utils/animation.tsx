@@ -6,4 +6,4 @@ export const rotateCoin = keyframes`
 100% { transform: rotateY(0deg)}
 `
 
-export const rotateAnimation = `${rotateCoin} ease-out 2s 1s infinite`
+export const rotateAnimation = `${rotateCoin} ease-out 2s infinite`
