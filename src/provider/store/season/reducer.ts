@@ -1,5 +1,4 @@
 import { ConnectSquare } from './../../../types';
-import { seasonInitialState } from './../constants'
 import { SeasonAction, SeasonActions } from './actions'
 import { Season } from './../types'
 
@@ -80,7 +79,7 @@ export const seasonReducer = (state: Season, action: SeasonActions) => {
       }
     }
     case SeasonAction.GAME_RESET:
-      return seasonInitialState
+      return {...state, currentGame: null}
     default:
       return state
   }

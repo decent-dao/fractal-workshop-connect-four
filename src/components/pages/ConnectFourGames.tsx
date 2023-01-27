@@ -26,6 +26,7 @@ import { useConnectFourGame } from '../../hooks/connectFour/useConnectFourGame'
 import { useStore } from '../../provider/store/StoreProvider'
 import { GameBase } from '../../provider/store/types'
 import { Branding } from '../ui/Branding'
+import { SeasonAction } from '../../provider/store/season/actions'
 
 const smallScreen = `
   "brand"
@@ -37,9 +38,17 @@ const largeScreen = `
 
 export function ConnectFourGames() {
   const {
-    currentSeason: { gameIds, connectFourContract },
+    currentSeason: { gameIds, connectFourContract, currentGame},
+    dispatch
   } = useStore()
   const copyTextToClipboard = useCopyText()
+  useEffect(() => {
+    if(currentGame) {
+      dispatch({
+        type: SeasonAction.GAME_RESET
+      })
+    }
+  }, [currentGame, dispatch])
   return (
     <Grid
       gridTemplateAreas={{ starting: smallScreen, '3xl': largeScreen }}
