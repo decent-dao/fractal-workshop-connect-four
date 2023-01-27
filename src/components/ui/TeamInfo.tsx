@@ -30,7 +30,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
   const currentTeamTurn = turn % 2 == 0 ? 2 : 1
   const isCurrentTurn = currentTeamTurn === teamNum
   const isGameOver = winner !== constants.AddressZero
-  const winningTeamNum = winner === teamOne.full ? 1 : 2
+  const winningTeamNum = !isGameOver ? null : winner === teamOne.full ? 1 : 2
 
   return (
     <Box pt={{ starting: 8, '3xl': 32 }} pr={{ starting: 0, '3xl': 0 }} mx={8}>
@@ -50,7 +50,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
           </Text>
           <Coin
             animation={
-              isCurrentTurn || (!isGameOver && winningTeamNum === teamNum)
+              isCurrentTurn || (isGameOver && winningTeamNum === teamNum)
                 ? rotateAnimation
                 : 'none'
             }
