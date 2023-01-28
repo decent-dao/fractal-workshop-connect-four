@@ -33,13 +33,13 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
   const winningTeamNum = !isGameOver ? null : winner === teamOne.full ? 1 : 2
 
   return (
-    <Box pt={{ starting: 4, '3xl': 32 }} pr={{ starting: 0, '3xl': 0 }} mx={8}>
+    <Box pt={{ 'min1000': 4, 'min1920': 32 }} pr={{ 'min1000': 0, 'min1920': 0 }} mx={8}>
       <Box bg={winningTeamNum === teamNum ? 'gold.500' : undefined} rounded='lg' p={2}>
         <Flex
-          alignItems={{ starting: 'center', '3xl': 'center' }}
-          flexDirection={{ starting: 'row', '3xl': 'column' }}
+          alignItems={{ 'min1000': 'center', 'min1920': 'center' }}
+          flexDirection={{ 'min1000': 'row', 'min1920': 'column' }}
           gap={4}
-          justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
+          justifyContent={{ 'min1000': 'center', 'min1920': 'flex-start' }}
         >
           <Text
             color={winningTeamNum === teamNum ? 'grayscale.black' : 'grayscale.white'}
@@ -55,19 +55,19 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
                 ? rotateAnimation
                 : 'none'
             }
-            boxSize={{ starting: 20, '3xl': 40 }}
+            boxSize={{ 'min1000': 20, 'min1920': 40 }}
           />
         </Flex>
         {winningTeamNum === teamNum && (
           <Flex pb={4} alignItems='center' justifyContent='center' gap={8}>
-            <Star boxSize={{ starting: 8, '3xl': 10 }} />
+            <Star boxSize={{ 'min1000': 8, 'min1920': 10 }} />
             <Text
-              textStyle={{ starting: 'text-2xl-mono-bold', '3xl': 'text-6xl-mono-bold' }}
+              textStyle={{ 'min1000': 'text-2xl-mono-bold', 'min1920': 'text-6xl-mono-bold' }}
               color='grayscale.black'
             >
               Winner!
             </Text>
-            <Star boxSize={{ starting: 8, '3xl': 10 }} />
+            <Star boxSize={{ 'min1000': 8, 'min1920': 10 }} />
           </Flex>
         )}
       </Box>

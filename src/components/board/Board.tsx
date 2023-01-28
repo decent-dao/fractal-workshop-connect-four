@@ -45,7 +45,7 @@ export function Board() {
       alignItems='flex-start'
       h='full'
       justifyContent='center'
-      pt={{ starting: '8', '3xl': '36' }}
+      pt={{ 'min1000': '8', 'min1920': '36' }}
     >
       <Box
         boxShadow='1px 1px 3px #fabd2e11, 4px 4px 6px #fabd2e11, 8px 8px 10px #fabd2e11, 16px 16px 18px #fabd2e11'

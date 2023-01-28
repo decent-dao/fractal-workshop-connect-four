@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify'
 
 export const updatedTheme = {
   ...theme,
-  breakpoints: { ...theme.breakpoints, starting: '0px', '3xl': '1920px' },
+  breakpoints: { ...theme.breakpoints, 'min1000': '1000px', 'min1920': '1920px' },
 };
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

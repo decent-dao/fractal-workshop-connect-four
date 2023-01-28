@@ -8,18 +8,18 @@ export function Branding() {
   const navigate = useNavigate()
   return (
     <Flex
-      alignItems={{ starting: 'center', '3xl': 'flex-start' }}
-      flexDirection={{ starting: 'row', '3xl': 'column' }}
+      alignItems={{ 'min1000': 'center', 'min1920': 'flex-start' }}
+      flexDirection={{ 'min1000': 'row', 'min1920': 'column' }}
       h='full'
       justifyContent='space-between'
       px={12}
-      pt={{ starting: 0, '3xl': 28 }}
-      pb={{ starting: 0, '3xl': 12 }}
+      pt={{ 'min1000': 0, 'min1920': 28 }}
+      pb={{ 'min1000': 0, 'min1920': 12 }}
     >
       <Flex
-        alignItems={{ starting: 'center', '3xl': 'flex-start' }}
-        flexDirection={{ starting: 'row', '3xl': 'column' }}
-        gap={{ starting: 0, '3xl': '12' }}
+        alignItems={{ 'min1000': 'center', 'min1920': 'flex-start' }}
+        flexDirection={{ 'min1000': 'row', 'min1920': 'column' }}
+        gap={{ 'min1000': 0, 'min1920': '12' }}
         w='full'
       >
         <IconButton
@@ -29,20 +29,20 @@ export function Branding() {
           variant='unstyled'
         />
         <Flex
-          alignItems={{ starting: 'center', '3xl': 'flex-start' }}
+          alignItems={{ 'min1000': 'center', 'min1920': 'flex-start' }}
           flexDirection='column'
-          gap={{ starting: 0, '3xl': '4' }}
-          justifyContent={{ starting: 'center', '3xl': 'flex-start' }}
+          gap={{ 'min1000': 0, 'min1920': '4' }}
+          justifyContent={{ 'min1000': 'center', 'min1920': 'flex-start' }}
           w='full'
         >
           <Text
             color='gold.500'
-            textStyle={{ starting: 'text-2xl-mono-semibold', '3xl': 'text-6xl-mono-semibold' }}
+            textStyle={{ 'min1000': 'text-2xl-mono-semibold', 'min1920': 'text-6xl-mono-semibold' }}
           >
             On - Chain Connect 4
           </Text>
           <Text
-            textStyle={{ starting: 'text-base-mono-semibold', '3xl': 'text-2xl-mono-semibold' }}
+            textStyle={{ 'min1000': 'text-base-mono-semibold', 'min1920': 'text-2xl-mono-semibold' }}
           >
             POWERED BY{' '}
             <Link
@@ -57,13 +57,13 @@ export function Branding() {
         </Flex>
       </Flex>
       <Flex
-        justifyContent={{ starting: 'flex-end', '3xl': 'flex-start' }}
-        width={{ starting: '12rem', '3xl': 'auto' }}
+        justifyContent={{ 'min1000': 'flex-end', 'min1920': 'flex-start' }}
+        width={{ 'min1000': '12rem', 'min1920': 'auto' }}
       >
         <Link href='https://www.fractalframework.xyz/' target='_blank' rel='noopener noreferer'>
           <IconButton
             aria-label='home'
-            icon={<FractalBrand boxSize={{ starting: '24', '3xl': '32' }} />}
+            icon={<FractalBrand boxSize={{ 'min1000': '24', 'min1920': '32' }} />}
             variant='unstyled'
           />
         </Link>

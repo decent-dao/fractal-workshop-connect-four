@@ -15,13 +15,13 @@ export function ConnectFourGame() {
 
   return (
     <Grid
-      gridTemplateAreas={{ starting: smallScreen, '3xl': largeScreen }}
+      gridTemplateAreas={{ 'min1000': smallScreen, 'min1920': largeScreen }}
       rowGap={0}
       templateColumns={{
-        starting: 'repeact(2, 1fr)',
-        '3xl': 'minmax(300px, 412px) minmax(200px, 412px) 1fr minmax(200px, 412px)',
+        'min1000': 'repeact(2, 1fr)',
+        'min1920': 'minmax(300px, 412px) minmax(200px, 412px) 1fr minmax(200px, 412px)',
       }}
-      templateRows={{ starting: '5rem 10rem 1fr', '3xl': 'calc(100vh)' }}
+      templateRows={{ 'min1000': '5rem 10rem 1fr', 'min1920': 'calc(100vh)' }}
     >
       <GridItem area='brand' bg='black.900-semi-transparent'>
         <Branding />

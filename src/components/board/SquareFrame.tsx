@@ -12,28 +12,28 @@ export function SquareFrame({ square, children }: { square: ConnectSquare; child
       position='relative'
     >
       <Box
-        boxSize={{ starting: '6rem', '3xl': '8rem' }}
+        boxSize={{ 'min1000': '6rem', 'min1920': '8rem' }}
         sx={{
           '&': {
             marginInlineStart: '0px',
             WebkitMarginStart: '0px !important',
           },
           '&:before': {
-            border: { starting: '16px solid', '3xl': '20px solid' },
+            border: { 'min1000': '16px solid', 'min1920': '20px solid' },
             borderColor: square.connected
-              ? { starting: 'gold.500-active', '3xl': 'gold.500' }
-              : { starting: 'gold.500', '3xl': 'gold.500' },
+              ? { 'min1000': 'gold.500-active', 'min1920': 'gold.500' }
+              : { 'min1000': 'gold.500', 'min1920': 'gold.500' },
             boxSize: '100%',
             content: '""',
             position: 'absolute',
           },
           '&:after': {
             boxShadow: {
-              starting: '0px 0px 0px 17px #fabd2eff',
-              '3xl': '0px 0px 0px 20px #fabd2eff',
+              'min1000': '0px 0px 0px 17px #fabd2eff',
+              'min1920': '0px 0px 0px 20px #fabd2eff',
             },
             borderRadius: '100%',
-            boxSize: { starting: '65%', '3xl': '70%' },
+            boxSize: { 'min1000': '65%', 'min1920': '70%' },
             content: '""',
             left: '50%',
             position: 'absolute',
