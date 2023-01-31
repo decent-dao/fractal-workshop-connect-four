@@ -6,13 +6,19 @@ import { theme } from '@decent-org/fractal-ui'
 import { StoreProvider } from './provider/store/StoreProvider'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './routes/router'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 
 export const updatedTheme = {
   ...theme,
-  breakpoints: { ...theme.breakpoints, 'min1000': '1000px', 'min1920': '1920px' },
-};
+  breakpoints: {
+    min0: '0px',
+    min400: '525px',
+    min600: '725px',
+    min1000: '1000px',
+    min1920: '1920px',
+  },
+}
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -21,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <StoreProvider>
           <RouterProvider router={router} />
           <ToastContainer
-            position="bottom-center"
+            position='bottom-center'
             closeButton={false}
             newestOnTop={false}
             pauseOnFocusLoss={false}

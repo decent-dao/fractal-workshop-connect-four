@@ -8,41 +8,56 @@ export function Branding() {
   const navigate = useNavigate()
   return (
     <Flex
-      alignItems={{ 'min1000': 'center', 'min1920': 'flex-start' }}
-      flexDirection={{ 'min1000': 'row', 'min1920': 'column' }}
+      alignItems={{ min0: 'center', min1920: 'flex-start' }}
+      flexDirection={{ min0: 'row', min1920: 'column' }}
       h='full'
       justifyContent='space-between'
-      px={12}
-      pt={{ 'min1000': 0, 'min1920': 28 }}
-      pb={{ 'min1000': 0, 'min1920': 12 }}
+      px={{ min0: 0, min600: 0, min1920: 12 }}
+      pt={{ min0: 4, min600: 2, min1920: 28 }}
+      pb={{ min0: 4, min600: 2, min1920: 12 }}
     >
       <Flex
-        alignItems={{ 'min1000': 'center', 'min1920': 'flex-start' }}
-        flexDirection={{ 'min1000': 'row', 'min1920': 'column' }}
-        gap={{ 'min1000': 0, 'min1920': '12' }}
+        alignItems={{ min0: 'flex-start', min600: 'center', min1920: 'flex-start' }}
+        justifyContent={{ min0: 'flex-start', min600: 'center', min1920: 'flex-start' }}
+        flexDirection={{ min0: 'row', min1920: 'column' }}
+        gap={{ min0: 0, min1920: '12' }}
         w='full'
+        ml={{ min0: 4, min600: 8, min1920: 0 }}
       >
         <IconButton
           aria-label='home'
-          icon={<FractalLogo width='12rem' height='auto' />}
+          icon={
+            <FractalLogo
+              width={{ min0: '4rem', min600: '8rem', min1000: '12rem', min1920: '12rem' }}
+              height='auto'
+            />
+          }
           onClick={() => navigate(ROUTES.base.relative())}
           variant='unstyled'
         />
         <Flex
-          alignItems={{ 'min1000': 'center', 'min1920': 'flex-start' }}
+          alignItems={{ min0: 'center', min1920: 'flex-start' }}
           flexDirection='column'
-          gap={{ 'min1000': 0, 'min1920': '4' }}
-          justifyContent={{ 'min1000': 'center', 'min1920': 'flex-start' }}
+          gap={{ min0: 0, min1920: '4' }}
+          justifyContent={{ min0: 'center', min1920: 'flex-start' }}
           w='full'
         >
           <Text
             color='gold.500'
-            textStyle={{ 'min1000': 'text-2xl-mono-semibold', 'min1920': 'text-6xl-mono-semibold' }}
+            textStyle={{
+              min0: 'text-base-mono-semibold',
+              min600: 'text-2xl-mono-semibold',
+              min1920: 'text-6xl-mono-semibold',
+            }}
           >
             On - Chain Connect 4
           </Text>
           <Text
-            textStyle={{ 'min1000': 'text-base-mono-semibold', 'min1920': 'text-2xl-mono-semibold' }}
+            textStyle={{
+              min0: 'text-xs-mono-semibold',
+              min600: 'text-base-mono-semibold',
+              min1920: 'text-2xl-mono-semibold',
+            }}
           >
             POWERED BY{' '}
             <Link
@@ -57,13 +72,13 @@ export function Branding() {
         </Flex>
       </Flex>
       <Flex
-        justifyContent={{ 'min1000': 'flex-end', 'min1920': 'flex-start' }}
-        width={{ 'min1000': '12rem', 'min1920': 'auto' }}
+        justifyContent={{ min0: 'flex-end', min1920: 'flex-start' }}
+        width={{ min0: 'auto', min1000: '12rem', min1920: 'auto' }}
       >
         <Link href='https://www.fractalframework.xyz/' target='_blank' rel='noopener noreferer'>
           <IconButton
             aria-label='home'
-            icon={<FractalBrand boxSize={{ 'min1000': '24', 'min1920': '32' }} />}
+            icon={<FractalBrand boxSize={{ min0: 16, min600: 20, min1000: 24, min1920: 32 }} />}
             variant='unstyled'
           />
         </Link>
