@@ -69,7 +69,7 @@ export const useAddressLookup = (address?: string) => {
       }
 
       const registryContract = baseContracts.fractalRegistryBase
-      const [ensName, registryDAONameEvent, contractGetCall] = await Promise.all([
+      const [ensName, registryDAONameEvents, contractGetCall] = await Promise.all([
         provider.lookupAddress(_address).catch(() => null),
         registryContract.queryFilter(registryContract.filters.FractalNameUpdated(_address)),
         baseContracts.gnosisSafeBase
@@ -77,8 +77,8 @@ export const useAddressLookup = (address?: string) => {
           .getChainId()
           .catch(() => null), // fails if not a Safe
       ])
-
-      const registryDAOName = registryDAONameEvent[0] ? registryDAONameEvent[0].args[1] : null
+      const registryEvent = registryDAONameEvents.pop()
+      const registryDAOName = registryEvent ? registryEvent.args[1] : null
       const isSafe = !!contractGetCall
       const truncated = addressSubString(_address)
 
