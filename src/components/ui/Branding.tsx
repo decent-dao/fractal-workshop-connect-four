@@ -17,18 +17,18 @@ export function Branding() {
       pb={{ min0: 4, min600: 2, min1920: 12 }}
     >
       <Flex
-        alignItems={{ min0: 'flex-start', min600: 'center', min1920: 'flex-start' }}
-        justifyContent={{ min0: 'flex-start', min600: 'center', min1920: 'flex-start' }}
+        alignItems={{ min0: 'flex-start', min400: 'center', min1920: 'flex-start' }}
+        justifyContent={{ min0: 'flex-start', min400: 'center', min1920: 'flex-start' }}
         flexDirection={{ min0: 'row', min1920: 'column' }}
         gap={{ min0: 0, min1920: '12' }}
         w='full'
-        ml={{ min0: 4, min600: 8, min1920: 0 }}
+        ml={{ min0: 2, min400: 8, min1920: 0 }}
       >
         <IconButton
           aria-label='home'
           icon={
             <FractalLogo
-              width={{ min0: '4rem', min600: '8rem', min1000: '12rem', min1920: '12rem' }}
+              width={{ min0: '4rem', min400: '8rem', min1000: '12rem', min1920: '12rem' }}
               height='auto'
             />
           }
@@ -45,8 +45,8 @@ export function Branding() {
           <Text
             color='gold.500'
             textStyle={{
-              min0: 'text-base-mono-semibold',
-              min600: 'text-2xl-mono-semibold',
+              min0: 'text-xs-mono-semibold',
+              min400: 'text-2xl-mono-semibold',
               min1920: 'text-6xl-mono-semibold',
             }}
           >
@@ -55,7 +55,7 @@ export function Branding() {
           <Text
             textStyle={{
               min0: 'text-xs-mono-semibold',
-              min600: 'text-base-mono-semibold',
+              min400: 'text-base-mono-semibold',
               min1920: 'text-2xl-mono-semibold',
             }}
           >

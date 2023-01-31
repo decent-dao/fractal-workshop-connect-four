@@ -49,8 +49,7 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
             color={winningTeamNum === teamNum ? 'grayscale.black' : 'grayscale.white'}
             textStyle={{
               min0: 'text-base-mono-bold',
-              min400: 'text-lg-mono-bold',
-              min600: 'text-2xl-mono-bold',
+              min400: 'text-2xl-mono-bold',
               min1000: 'text-4xl-mono-bold',
               min1920: 'text-4xl-mono-bold',
             }}
