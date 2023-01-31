@@ -51,12 +51,12 @@ export function ConnectFourGames() {
   }, [currentGame, dispatch])
   return (
     <Grid
-      gridTemplateAreas={{ 'min1000': smallScreen, 'min1920': largeScreen }}
+      gridTemplateAreas={{ 'min0': smallScreen, 'min1920': largeScreen }}
       templateColumns={{
-        'min1000': 'minmax(1fr, 72rem)',
+        'min0': 'repeat(1, 1fr)',
         'min1920': 'minmax(300px, 412px) 1fr',
       }}
-      templateRows={{ 'min1000': '5rem 10rem 1fr', 'min1920': 'calc(100vh)' }}
+      templateRows={{ 'min0': '5rem 1fr', 'min1920': 'calc(100vh)' }}
     >
       <GridItem area='brand' bg='black.900-semi-transparent'>
         <Branding />
