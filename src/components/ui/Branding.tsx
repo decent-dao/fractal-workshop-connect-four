@@ -78,6 +78,7 @@ export function Branding() {
         <Link href='https://www.fractalframework.xyz/' target='_blank' rel='noopener noreferer'>
           <IconButton
             aria-label='home'
+            ml={{ min0: 0, min600: 0, min1000: 0, min1920: -8 }}
             icon={<FractalBrand boxSize={{ min0: 16, min600: 20, min1000: 24, min1920: 32 }} />}
             variant='unstyled'
           />
