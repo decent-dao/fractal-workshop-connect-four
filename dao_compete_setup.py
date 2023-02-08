@@ -14,9 +14,9 @@ import sys
 #
 # And used via the command:
 #
-# `python3 dao_compete_setup.py dao_compete_config.txt`
+# `python3 dao_compete_setup.py`
 #
-# The `dao_compete_config.txt` file will need to have the following lines:
+# The script requires a `dao_compete_config.txt` file, which will need to have the following lines:
 #
 #   {infuraAPIKey} - an API key for https://www.infura.io/
 #   {executionPrivateKey} - your wallet private key to execute the transactions with
@@ -24,7 +24,8 @@ import sys
 #   {dao2TokenAddress} - the address of the second DAO's ERC20Votes token
 #   {participantVotingPower} - how many voting tokens (as a whole number) to send to each participant
 #   {participantEth} - an amount of Goerli Eth to send to each participant, so they can execute transactions
-#   {participantAddresses}... - One or more wallet addresses of the participants
+#   {participantAddresses}... - Zero or more wallet addresses of the participants, if there are none, the user
+#       will be prompted to input addresses via the command line
 #
 # !!! be careful not to commit the dao_compete_config.txt file, as it contains your wallet private key !!!
 
