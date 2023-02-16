@@ -50,7 +50,7 @@ export function Branding() {
               min1920: 'text-6xl-mono-semibold',
             }}
           >
-            On - Chain Connect 4
+            On-chain Connect 4
           </Text>
           <Text
             textStyle={{

@@ -1,7 +1,7 @@
 import { Dispatch, useEffect } from 'react';
-import { TypedListener } from 'b3-curious-contracts/typechain/common';
+import { TypedListener } from '@fractal-framework/fractal-demos-contracts/typechain/common';
 import { BigNumber } from 'ethers';
-import { GameCreatedEvent, GameFinishedEvent, TurnTakenEvent } from 'b3-curious-contracts/typechain/ConnectFour';
+import { GameCreatedEvent, GameFinishedEvent, TurnTakenEvent } from '@fractal-framework/fractal-demos-contracts/typechain/ConnectFour';
 import { SeasonActions, SeasonAction } from '../../provider/store/season/actions';
 import { Season } from '../../provider/store/types';
 
