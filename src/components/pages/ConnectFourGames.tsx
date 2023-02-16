@@ -67,7 +67,7 @@ export function ConnectFourGames() {
             <Info boxSize='24px' />
             <AlertTitle>
               <Text textStyle='text-lg-mono-medium' my={4}>
-                For Instructions on how to start a game and play see
+                For instructions on how to start a game and play see
                 <Link
                   ml={2}
                   color='blue.400'
