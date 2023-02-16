@@ -21,7 +21,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fractal-framework/fractal-contracts": "^0.1.14",
-    "@fractal-framework/fractal-demos-contracts": "^0.1.11",
+    "@fractal-framework/fractal-demos-contracts": "^0.1.12",
     "@tanstack/query-core": "^4.22.0",
     "crypto-js": "^4.1.1",
     "ethers": "^5.7.2",

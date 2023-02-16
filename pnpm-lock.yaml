@@ -10,7 +10,7 @@ specifiers:
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
   '@fractal-framework/fractal-contracts': ^0.1.14
-  '@fractal-framework/fractal-demos-contracts': ^0.1.11
+  '@fractal-framework/fractal-demos-contracts': ^0.1.12
   '@tanstack/query-core': ^4.22.0
   '@types/crypto-js': ^4.1.1
   '@types/node': ^18.11.18
@@ -50,7 +50,7 @@ dependencies:
   '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
   '@emotion/styled': 11.10.5_jp5djshq6aqfasno3mth3hguci
   '@fractal-framework/fractal-contracts': 0.1.14
-  '@fractal-framework/fractal-demos-contracts': 0.1.11
+  '@fractal-framework/fractal-demos-contracts': 0.1.12
   '@tanstack/query-core': 4.22.0
   crypto-js: 4.1.1
   ethers: 5.7.2
@@ -2240,8 +2240,8 @@ packages:
     resolution: {integrity: sha512-RAxsXyFSLd3gIwXOYne+jn7o5jM+MzG2nGhA3yDk6inAcNPqB8kMFRYPvfeCKgTGILfPG61UgB4c/WWCarRlRA==}
     dev: false
 
-  /@fractal-framework/fractal-demos-contracts/0.1.11:
-    resolution: {integrity: sha512-0ZUu5i20vfEPp7mZWTDM83j/pCU93PYnymnJFSZXcLudNyAP2G25V90akwk4KdLNIlDccvF4i0wyX0M8e+0y3g==}
+  /@fractal-framework/fractal-demos-contracts/0.1.12:
+    resolution: {integrity: sha512-rJ289Zh36fwr0QaDOJiQNup/0BBuYZPGWK/RVHzuCOG4ddz0FC2p34Or27bQFk80tz/iqKL1oXg1yGD1DcbnLQ==}
     dependencies:
       '@openzeppelin/contracts-upgradeable': 4.8.1
     dev: false
