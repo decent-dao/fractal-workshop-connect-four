@@ -10,6 +10,7 @@ specifiers:
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
   '@fractal-framework/fractal-contracts': ^0.1.14
+  '@fractal-framework/fractal-demos-contracts': ^0.1.11
   '@tanstack/query-core': ^4.22.0
   '@types/crypto-js': ^4.1.1
   '@types/node': ^18.11.18
@@ -18,7 +19,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.48.1
   '@typescript-eslint/parser': ^5.48.1
   '@vitejs/plugin-react': ^3.0.0
-  b3-curious-contracts: ^0.1.8
   crypto-js: ^4.1.1
   eslint: ^8.31.0
   eslint-config-prettier: ^8.6.0
@@ -50,8 +50,8 @@ dependencies:
   '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
   '@emotion/styled': 11.10.5_jp5djshq6aqfasno3mth3hguci
   '@fractal-framework/fractal-contracts': 0.1.14
+  '@fractal-framework/fractal-demos-contracts': 0.1.11
   '@tanstack/query-core': 4.22.0
-  b3-curious-contracts: 0.1.8
   crypto-js: 4.1.1
   ethers: 5.7.2
   framer-motion: 8.4.3_biqbaboplfbrettd7655fr4n2y
@@ -2240,6 +2240,12 @@ packages:
     resolution: {integrity: sha512-RAxsXyFSLd3gIwXOYne+jn7o5jM+MzG2nGhA3yDk6inAcNPqB8kMFRYPvfeCKgTGILfPG61UgB4c/WWCarRlRA==}
     dev: false
 
+  /@fractal-framework/fractal-demos-contracts/0.1.11:
+    resolution: {integrity: sha512-0ZUu5i20vfEPp7mZWTDM83j/pCU93PYnymnJFSZXcLudNyAP2G25V90akwk4KdLNIlDccvF4i0wyX0M8e+0y3g==}
+    dependencies:
+      '@openzeppelin/contracts-upgradeable': 4.8.1
+    dev: false
+
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
@@ -3504,12 +3510,6 @@ packages:
       follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
-    dev: false
-
-  /b3-curious-contracts/0.1.8:
-    resolution: {integrity: sha512-nlI40YLX7IwBNlJb1GR/jPllldle6ZATtAjyo1u+ZuXK8K5UZ2BYyZao1ZlQIzo/11Trkfg+WVIKRKub2Q7dEQ==}
-    dependencies:
-      '@openzeppelin/contracts-upgradeable': 4.8.1
     dev: false
 
   /babel-plugin-macros/3.1.0:

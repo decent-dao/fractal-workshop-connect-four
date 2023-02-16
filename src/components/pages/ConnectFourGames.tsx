@@ -71,7 +71,7 @@ export function ConnectFourGames() {
                 <Link
                   ml={2}
                   color='blue.400'
-                  href='https://github.com/curiousity-labs/fractal-workshop-connect-four'
+                  href='https://github.com/decent-dao/fractal-workshop-connect-four'
                 >
                   README
                 </Link>

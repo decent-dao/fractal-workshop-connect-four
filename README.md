@@ -1,6 +1,6 @@
 # Fractal Connected
 
-Do more with DAOs...like play games. With the power of a simple descisions made in collaboration (or solo if you really want to). This site is for viewing purposes only. It reads events and data from Solidity written [Smart Contracts](https://github.com/curiousity-labs/b3-curious-games/blob/main/packages/b3-curious-contracts/contracts/ConnectFour.sol) and displays the game progress in real time.
+Do more with DAOs...like play games. With the power of a simple descisions made in collaboration (or solo if you really want to). This site is for viewing purposes only. It reads events and data from Solidity written [Smart Contracts](https://github.com/decent-dao/fractal-demos-contracts/blob/main/contracts/ConnectFour/ConnectFour.sol) and displays the game progress in real time.
 
 ## Supported Chains
 - Goerli Testnet
