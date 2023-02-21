@@ -8,6 +8,8 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './routes/router'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
+import '@fontsource/ibm-plex-mono';
+import '@fontsource/ibm-plex-sans';
 
 export const updatedTheme = {
   ...theme,

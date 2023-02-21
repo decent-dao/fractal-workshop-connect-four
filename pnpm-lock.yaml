@@ -9,8 +9,10 @@ specifiers:
   '@decent-org/fractal-ui': ^0.1.7
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
+  '@fontsource/ibm-plex-mono': ^4.5.13
+  '@fontsource/ibm-plex-sans': ^4.5.13
   '@fractal-framework/fractal-contracts': ^0.1.14
-  '@fractal-framework/fractal-demos-contracts': ^0.1.12
+  '@fractal-framework/fractal-demos-contracts': ^0.1.13
   '@tanstack/query-core': ^4.22.0
   '@types/crypto-js': ^4.1.1
   '@types/node': ^18.11.18
@@ -49,8 +51,10 @@ dependencies:
   '@decent-org/fractal-ui': 0.1.7_ikxaovm2hjytixad35fibyx7o4
   '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
   '@emotion/styled': 11.10.5_jp5djshq6aqfasno3mth3hguci
+  '@fontsource/ibm-plex-mono': 4.5.13
+  '@fontsource/ibm-plex-sans': 4.5.13
   '@fractal-framework/fractal-contracts': 0.1.14
-  '@fractal-framework/fractal-demos-contracts': 0.1.12
+  '@fractal-framework/fractal-demos-contracts': 0.1.13
   '@tanstack/query-core': 4.22.0
   crypto-js: 4.1.1
   ethers: 5.7.2
@@ -2236,12 +2240,20 @@ packages:
       '@ethersproject/strings': 5.7.0
     dev: false
 
+  /@fontsource/ibm-plex-mono/4.5.13:
+    resolution: {integrity: sha512-KAE7X2LgCV4X6p7vj1h2phRnhPX4YUa8FBAB0Jj9xW7Q+p+k2ce4HEAMJJ2RFHI075ClgQx+KZuDBNuiKgp5yw==}
+    dev: false
+
+  /@fontsource/ibm-plex-sans/4.5.13:
+    resolution: {integrity: sha512-7oDAqvuIArnMJck/JBqCnQZwqL4za+5xG+1Gu4enYbGcGqmUPktiuOy1i0N3XrzrNO70ZvsSt1Rdkxr2oemE6Q==}
+    dev: false
+
   /@fractal-framework/fractal-contracts/0.1.14:
     resolution: {integrity: sha512-RAxsXyFSLd3gIwXOYne+jn7o5jM+MzG2nGhA3yDk6inAcNPqB8kMFRYPvfeCKgTGILfPG61UgB4c/WWCarRlRA==}
     dev: false
 
-  /@fractal-framework/fractal-demos-contracts/0.1.12:
-    resolution: {integrity: sha512-rJ289Zh36fwr0QaDOJiQNup/0BBuYZPGWK/RVHzuCOG4ddz0FC2p34Or27bQFk80tz/iqKL1oXg1yGD1DcbnLQ==}
+  /@fractal-framework/fractal-demos-contracts/0.1.13:
+    resolution: {integrity: sha512-p/10kc0z4kE+8MhzQISOOtrDSe5JSXOhMnHfPSAAI3c4VjL1IbzDfWqE6ygCKr2dB9Ic1yZ40HudHrAA/+i17g==}
     dependencies:
       '@openzeppelin/contracts-upgradeable': 4.8.1
     dev: false
