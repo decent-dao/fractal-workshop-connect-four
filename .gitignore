@@ -22,6 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Config file for creating DAO teams via dao_compete_setup.py
-dao_compete_config.txt
