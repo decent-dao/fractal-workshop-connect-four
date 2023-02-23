@@ -23,7 +23,7 @@
     "@fontsource/ibm-plex-mono": "^4.5.13",
     "@fontsource/ibm-plex-sans": "^4.5.13",
     "@fractal-framework/fractal-contracts": "^0.1.14",
-    "@fractal-framework/fractal-demos-contracts": "^0.1.15",
+    "@fractal-framework/fractal-demos-contracts": "^0.1.17",
     "@tanstack/query-core": "^4.22.0",
     "crypto-js": "^4.1.1",
     "ethers": "^5.7.2",

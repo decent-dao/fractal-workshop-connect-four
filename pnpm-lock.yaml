@@ -12,7 +12,7 @@ specifiers:
   '@fontsource/ibm-plex-mono': ^4.5.13
   '@fontsource/ibm-plex-sans': ^4.5.13
   '@fractal-framework/fractal-contracts': ^0.1.14
-  '@fractal-framework/fractal-demos-contracts': ^0.1.15
+  '@fractal-framework/fractal-demos-contracts': ^0.1.17
   '@tanstack/query-core': ^4.22.0
   '@types/crypto-js': ^4.1.1
   '@types/node': ^18.11.18
@@ -54,7 +54,7 @@ dependencies:
   '@fontsource/ibm-plex-mono': 4.5.13
   '@fontsource/ibm-plex-sans': 4.5.13
   '@fractal-framework/fractal-contracts': 0.1.14
-  '@fractal-framework/fractal-demos-contracts': 0.1.15
+  '@fractal-framework/fractal-demos-contracts': 0.1.17
   '@tanstack/query-core': 4.22.0
   crypto-js: 4.1.1
   ethers: 5.7.2
@@ -2252,8 +2252,8 @@ packages:
     resolution: {integrity: sha512-RAxsXyFSLd3gIwXOYne+jn7o5jM+MzG2nGhA3yDk6inAcNPqB8kMFRYPvfeCKgTGILfPG61UgB4c/WWCarRlRA==}
     dev: false
 
-  /@fractal-framework/fractal-demos-contracts/0.1.15:
-    resolution: {integrity: sha512-UdKJpgh0Set8DHpimwo39WSJ/vND3EbmqaBRzqkLITmJnPsMW1hXviJF7dSdbRqdjdN/jEdO6rlWP4sKUeolLg==}
+  /@fractal-framework/fractal-demos-contracts/0.1.17:
+    resolution: {integrity: sha512-gjmMFZdnuUw1H/gotEoiRB2shyDzIt8hHxi2BvK6vUglyIniaG96xma/YarHDPtW1B5owgWnEQ0+NHQOEBGncg==}
     dependencies:
       '@openzeppelin/contracts-upgradeable': 4.8.1
     dev: false
