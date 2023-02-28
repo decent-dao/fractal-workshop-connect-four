@@ -36,5 +36,3 @@ We love collaboration, but if you would just like to play Connect 4 without a DA
 ### FAQs
 - Who goes first?
 - - Turns occur as each player makes a move starting with Team two, since Team one is who challenged.
-- Why can't I call column 7?
-- - Columns are indexed starting at 0 (like arrays). From left to write the columns are 0, 1, 2, 3, 4, 5, 6.

@@ -3,8 +3,8 @@ import { constants } from 'ethers'
 import { useStore } from '../../provider/store/StoreProvider'
 import { rotateAnimation } from '../../utils/animation'
 import { Star } from '../icons/Star'
-import { TeamOneCoin } from '../icons/TeamOneCoin'
-import { TeamTwoCoin } from '../icons/TeamTwoCoin'
+import { TeamOneCoinF } from '../icons/TeamOneCoinF'
+import { TeamTwoCoinD } from '../icons/TeamTwoCoinD'
 
 export function TeamInfo({ teamNum }: { teamNum: number }) {
   const {
@@ -19,11 +19,11 @@ export function TeamInfo({ teamNum }: { teamNum: number }) {
   const { Coin, displayName } =
     teamNum === 1
       ? {
-          Coin: TeamOneCoin,
+          Coin: TeamOneCoinF,
           displayName: teamOne.displayName,
         }
       : {
-          Coin: TeamTwoCoin,
+          Coin: TeamTwoCoinD,
           displayName: teamTwo.displayName,
         }
 

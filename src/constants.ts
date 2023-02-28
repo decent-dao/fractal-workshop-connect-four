@@ -1,5 +1,5 @@
-import { TeamTwoCoin } from './components/icons/TeamTwoCoin';
-import { TeamOneCoin } from './components/icons/TeamOneCoin';
+import { TeamTwoCoinD } from './components/icons/TeamTwoCoinD';
+import { TeamOneCoinF } from './components/icons/TeamOneCoinF';
 export const TEAM_COLORS = [
   // team one
   {
@@ -15,9 +15,9 @@ export const TEAM_COLORS = [
 
 export const TEAM = [
   {
-    CoinIcon: TeamOneCoin
+    CoinIcon: TeamOneCoinF
   },
   {
-    CoinIcon: TeamTwoCoin
+    CoinIcon: TeamTwoCoinD
   }
 ]
