@@ -1,7 +1,7 @@
 import { createIcon } from '@chakra-ui/react';
 
-export const TeamTwoCoin = createIcon({
-  displayName: 'TeamTwoCoin',
+export const TeamTwoCoinF = createIcon({
+  displayName: 'TeamTwoCoinF',
   viewBox: '0 0 129 130',
   path: (
     <svg>
