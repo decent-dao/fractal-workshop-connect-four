@@ -8,7 +8,6 @@ export type AddressInfo = {
   truncated: string | null
   ensName: string | null
   registryDAOName: string | null
-  isSafe: boolean
   displayName: string | null
   addressURL: string | null
 }
@@ -29,7 +28,6 @@ export const intialAddressState = {
   truncated: null,
   ensName: null,
   registryDAOName: null,
-  isSafe: false,
   displayName: null,
   addressURL: null
 }
@@ -69,27 +67,22 @@ export const useAddressLookup = (address?: string) => {
       }
 
       const registryContract = baseContracts.fractalRegistryBase
-      const [ensName, registryDAONameEvents, contractGetCall] = await Promise.all([
+      const [ensName, registryDAONameEvents] = await Promise.all([
         provider.lookupAddress(_address).catch(() => null),
-        registryContract.queryFilter(registryContract.filters.FractalNameUpdated(_address)),
-        baseContracts.gnosisSafeBase
-          .attach(_address)
-          .getChainId()
-          .catch(() => null), // fails if not a Safe
+        registryContract.queryFilter(registryContract.filters.FractalNameUpdated(_address))
+
       ])
       const registryEvent = registryDAONameEvents.pop()
       const registryDAOName = registryEvent ? registryEvent.args[1] : null
-      const isSafe = !!contractGetCall
       const truncated = addressSubString(_address)
 
-      const addressType = registryDAOName ? 'fractal' : isSafe ? 'gnosis' : 'etherscan'
+      const addressType = registryDAOName ? 'fractal'  : 'etherscan'
       const addressInfo = {
         full: _address,
         ensName,
         registryDAOName,
         truncated,
         get displayName() { return this.ensName || this.registryDAOName || this.truncated},
-        isSafe,
         addressURL: getAddressURL(_address, addressType)
       }
       return addressInfo
