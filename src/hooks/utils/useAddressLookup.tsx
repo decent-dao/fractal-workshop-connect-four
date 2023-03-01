@@ -28,7 +28,6 @@ export const intialAddressState = {
   truncated: null,
   ensName: null,
   registryDAOName: null,
-  isSafe: false,
   displayName: null,
   addressURL: null
 }
